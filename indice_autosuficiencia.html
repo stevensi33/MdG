@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Índice de Autosuficiencia</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #005aa4;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .embed-container {
+            position: relative;
+            padding-bottom: 50%; /* Reduce el alto relativo */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .embed-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #005aa4;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Índice de Autosuficiencia</h1>
+    </header>
+
+    <div class="container">
+        <p class="text-center">
+            A continuación, puedes visualizar el informe interactivo del Índice de Autosuficiencia:
+        </p>
+
+        <div class="embed-container">
+            <iframe src="https://app.powerbi.com/view?r=eyJrIjoiODczZjgwZWItNjk5ZC00NzM5LWFlODctMWZhYzQ4YWFmYWMyIiwidCI6ImZjMDA1NDdhLTI0YmItNGU0Zi05ZDYxLTczZmNhNWViOWRmMyIsImMiOjR9" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Modelo de Graduación. Todos los derechos reservados.
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
