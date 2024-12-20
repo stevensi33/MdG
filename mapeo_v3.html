@@ -17,10 +17,11 @@
       background-color: #005aa4;
       color: white;
       text-align: center;
-      padding: 20px;
+      padding: 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
     }
 
     header a:hover {
@@ -29,15 +30,25 @@
 
     header img {
       height: 50px;
-      margin-right: 20px;
+      margin-right: 10px;
     }
 
     header h1 {
       margin: 0;
-      font-size: 24px;
+      font-size: 20px;
       line-height: 1.2;
-      width: calc(100% - 70px);
+      flex: 1;
       text-align: center;
+    }
+
+    header a {
+      background-color: white;
+      color: #005aa4;
+      padding: 8px 15px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-left: 10px;
     }
 
     main {
@@ -52,9 +63,29 @@
     }
 
     .search-bar input {
-      width: 80%;
+      width: 90%;
+      max-width: 600px;
       padding: 10px;
       font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .filter-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .filter-options select {
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 45%;
+      max-width: 300px;
     }
 
     .actor-card {
@@ -65,6 +96,14 @@
       padding: 15px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
+    footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #005aa4;
+            color: white;
+            margin-top: 20px;
+        }
 
     .actor-header {
       font-size: 18px;
@@ -80,15 +119,36 @@
       margin: 5px 0;
     }
 
-    .filter-options {
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 20px;
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      header img {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+
+      .filter-options select {
+        width: 90%;
+        max-width: none;
+      }
+
+      .search-bar input {
+        width: 100%;
+      }
     }
 
-    .filter-options select {
-      padding: 10px;
-      font-size: 16px;
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 16px;
+      }
+
+      header a {
+        font-size: 14px;
+        padding: 6px 10px;
+      }
     }
   </style>
 </head>
@@ -97,8 +157,7 @@
   <header>
     <img src="https://cah.org.co/wp-content/uploads/2023/12/Logo-CAH-03.png" alt="Logo CAH">
     <h1>Mapa de Actores y Servicios - Modelo de Graduación 2024</h1>
-    <a href="index.html"
-      style="margin-left: 20px; background-color: white; color: #005aa4; padding: 8px 15px; text-decoration: none; border-radius: 4px; font-weight: bold;">Inicio</a>
+    <a href="index.html">Inicio</a>
   </header>
   <main>
     <div class="search-bar">
@@ -2208,7 +2267,6 @@
         }
       ];
 
-    // Función para eliminar acentos
     const removeAccents = (str) => {
       return str.normalize("NFD").replace(/\p{Diacritic}/gu, "");
     };
@@ -2218,7 +2276,6 @@
       if (typeof value === 'string') str = value.toLowerCase();
       else if (typeof value === 'number') str = value.toString().toLowerCase();
 
-      // Eliminar acentos
       str = removeAccents(str);
       return str;
     };
@@ -2251,7 +2308,7 @@
 
     const filterActors = () => {
       const searchInput = document.getElementById('search').value.toLowerCase();
-      const searchQuery = removeAccents(searchInput); // Eliminamos acentos de lo que se busca
+      const searchQuery = removeAccents(searchInput);
 
       const areaFilter = document.getElementById('area-filter').value;
       const incidenciaFilter = document.getElementById('incidencia-filter').value;
@@ -2285,9 +2342,11 @@
     document.getElementById('sector-filter').addEventListener('change', filterActors);
     document.getElementById('comuna-filter').addEventListener('change', filterActors);
 
-    // Render inicial
     renderActors(actors);
   </script>
+  <footer>
+    &copy; 2024 Modelo de Graduación. Todos los derechos reservados.
+  </footer>
 </body>
 
 </html>
