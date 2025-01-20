@@ -28,8 +28,8 @@
     "teléfono": "(604) 448 17 47"
   },
   {
-    "nombre": "Alcaldía de Medellín",
-    "área": "Medellín Te Quiere Saludable",
+    "nombre": "Medellín te quiere saludable",
+    "área": "Salud",
     "incidencia": "Distrital",
     "sector": "Público",
     "comuna": "Todas",
@@ -38,8 +38,8 @@
     "requisitos": "Mayoria de edad",
     "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
     "contacto": NaN,
-    "dirección": "No especificado",
-    "teléfono": "3006044444 - (604) 44444448 - (604) 444 4144"
+    "dirección": "Julián Escobar",
+    "teléfono": "3215092381 - 3006044444 - (604) 44444448 - (604) 444 4144"
   },
   {
     "nombre": "Fundación Juanfe",
@@ -1219,13 +1219,13 @@
     "teléfono": 3246838282
   },
   {
-    "nombre": "Alcaldía de Medellín",
+    "nombre": "Medellín te quiere saludable",
     "área": "Salud",
     "incidencia": "Distrital",
     "sector": "Público",
     "comuna": "Todas",
     "programa": NaN,
-    "ofrece": "MEDELLIN TE QUIERE SALUDABLE",
+    "ofrece": "Medellín Te Quiere saludable",
     "requisitos": NaN,
     "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
     "contacto": "JULIAN ESCOBAR",
@@ -1315,20 +1315,6 @@
     "contacto": "Luisa Maria Sepúlveda",
     "dirección": "Carrera 79 calle 40 Sur 40, Medellín",
     "teléfono": "(604) 286 5173)"
-  },
-  {
-    "nombre": "Secretaria de salud",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 80,
-    "programa": NaN,
-    "ofrece": "Medellín te quiere saludable",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Población General",
-    "dirección": "No especificado",
-    "teléfono": "."
   },
   {
     "nombre": "Unidad Familia Medellín",
@@ -1653,12 +1639,12 @@
     "teléfono": 3154850665
   },
   {
-    "nombre": "Medellín me quiere saludable",
+    "nombre": "Medellín te quiere saludable",
     "área": "Salud",
     "incidencia": "Distrital",
     "sector": "Público",
     "comuna": 3,
-    "programa": NaN,
+    "programa": "Medellín te quiere saludable",
     "ofrece": "Servicios de salud",
     "requisitos": "Ninguno.",
     "población": "General",
@@ -1667,12 +1653,12 @@
     "teléfono": 3004778734
   },
   {
-    "nombre": "Medellín me quiere saludable",
+    "nombre": "Medellín te quiere saludable",
     "área": "Salud",
     "incidencia": "Distrital",
     "sector": "Público",
     "comuna": 4,
-    "programa": NaN,
+    "programa": "Medellín te quiere saludable",
     "ofrece": "Servicios de salud",
     "requisitos": "Ninguno.",
     "población": "General",
@@ -1681,12 +1667,12 @@
     "teléfono": 3105983987
   },
   {
-    "nombre": "Medellín me quiere saludable",
+    "nombre": "Medellín te quiere saludable",
     "área": "Salud",
     "incidencia": "Distrital",
     "sector": "Público",
     "comuna": 7,
-    "programa": NaN,
+    "programa": "Medellín te quiere saludable",
     "ofrece": "Servicios de salud",
     "requisitos": "Ninguno.",
     "población": "General",
@@ -1695,12 +1681,12 @@
     "teléfono": 3193665263
   },
   {
-    "nombre": "Medellín me quiere saludable",
+    "nombre": "Medellín te quiere saludable",
     "área": "Salud",
     "incidencia": "Distrital",
     "sector": "Público",
     "comuna": 8,
-    "programa": "Medellín me quiere saludable",
+    "programa": "Medellín te quiere saludable",
     "ofrece": "Servicios de salud",
     "requisitos": "Ninguno.",
     "población": "General",
@@ -1709,12 +1695,12 @@
     "teléfono": 3127727126
   },
   {
-    "nombre": "Medellín me quiere saludable",
+    "nombre": "Medellín te quiere saludable",
     "área": "Salud",
     "incidencia": "Distrital",
     "sector": "Público",
     "comuna": 13,
-    "programa": "Medellín me quiere saludable",
+    "programa": "Medellín te quiere saludable",
     "ofrece": "Servicios de salud",
     "requisitos": "Ninguno.",
     "población": "General",
@@ -1723,12 +1709,12 @@
     "teléfono": 3006575582
   },
   {
-    "nombre": "Medellín me quiere saludable",
+    "nombre": "Medellín te quiere saludable",
     "área": "Salud",
     "incidencia": "Distrital",
     "sector": "Público",
     "comuna": 16,
-    "programa": "Medellín me quiere saludable",
+    "programa": "Medellín te quiere saludable",
     "ofrece": "Servicios de salud",
     "requisitos": "Ninguno.",
     "población": "General",
@@ -1737,12 +1723,12 @@
     "teléfono": 3128726160
   },
   {
-    "nombre": "Medellín me quiere saludable",
+    "nombre": "Medellín te quiere saludable",
     "área": "Salud",
     "incidencia": "Distrital",
     "sector": "Público",
     "comuna": 80,
-    "programa": "Medellín me quiere saludable",
+    "programa": "Medellín te quiere saludable",
     "ofrece": "Servicios de salud",
     "requisitos": "Ninguno.",
     "población": "General",
