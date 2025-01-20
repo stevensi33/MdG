@@ -14,6 +14,20 @@
     "teléfono": "3009124560 - (604) 2836688"
   },
   {
+    "nombre": "Integrate",
+    "área": "Todas",
+    "incidencia": "Distrital",
+    "sector": "Público",
+    "comuna": "Todas",
+    "programa": "Integrate Medellín",
+    "ofrece": "Integración local",
+    "requisitos": "Ninguno",
+    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
+    "contacto": "Integrate",
+    "dirección": "Cl. 59 #45-53, La Candelaria, Medellín",
+    "teléfono": NaN
+  },
+  {
     "nombre": "Saviasalud",
     "área": "Salud",
     "incidencia": "Distrital",
@@ -272,7 +286,7 @@
     "incidencia": "Distrital",
     "sector": "Público",
     "comuna": "Todas",
-    "programa": Unidad de Niñez,
+    "programa": "Unidad de Niñez",
     "ofrece": "LA MAGIA DE JUGAR ES SANAR - MEDELLÍN CUIDA SUS NIÑAS, NIÑOS Y ADOLESCENTES - CENTRO DE DIAGNÓSTICO Y DERIVACIÓN -" ,
     "requisitos": NaN,
     "población": "Niñez",
@@ -1006,7 +1020,7 @@
     "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
     "contacto": "Brenda Aristizábal",
     "dirección": "No especificado",
-    "teléfono": 3154535982
+    "teléfono": "3154535982 - 3009109995"
   },
   {
     "nombre": "Grupo Adulto Mayor",
@@ -1379,7 +1393,7 @@
     "sector": "Ong",
     "comuna": "Todas",
     "programa": NaN,
-    "ofrece": "Apoyan a madres con un solo hijo para que tengan la posibilidad de estudiar una carrera técnica y de ingresar al mundo laboral, apoyando el ingreso de su hijo a un jardín infantil de Buen comienzo en el mismo horario en que estudiano trabajan.",
+    "ofrece": "Apoyan a madres con un solo hijo para que tengan la posibilidad de estudiar una carrera técnica y de ingresar al mundo laboral, apoyando el ingreso de su hijo a un jardín infantil de Buen comienzo en el mismo horario en que están estudiando o trabajando.",
     "requisitos": "Madres con un solo parto, y edades entre 16 y 20 años, con documento regular y bachillerato reconocido en Colombia o con nivel de formación básica ya concluida",
     "población": "Mujeres",
     "contacto": NaN,
