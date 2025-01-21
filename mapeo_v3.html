@@ -1,2129 +1,2291 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa de Actores</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mapa de Actores</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f9;
-    }
-
-    header {
-      background-color: #005aa4;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    header a:hover {
-      background-color: #f0f0f0;
-    }
-
-    header img {
-      height: 50px;
-      margin-right: 10px;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 20px;
-      line-height: 1.2;
-      flex: 1;
-      text-align: center;
-    }
-
-    header a {
-      background-color: white;
-      color: #005aa4;
-      padding: 8px 15px;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: bold;
-      margin-left: 10px;
-    }
-
-    main {
-      padding: 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .search-bar {
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .search-bar input {
-      width: 90%;
-      max-width: 600px;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-
-    .filter-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .filter-options select {
-      padding: 10px;
-      font-size: 14px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      width: 45%;
-      max-width: 300px;
-    }
-
-    .actor-card {
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      padding: 15px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #005aa4;
-            color: white;
-            margin-top: 20px;
-        }
-
-    .actor-header {
-      font-size: 18px;
-      font-weight: bold;
-      color: #0078d7;
-    }
-
-    .actor-details {
-      margin-top: 10px;
-    }
-
-    .actor-details p {
-      margin: 5px 0;
-    }
-
-    @media (max-width: 768px) {
       header {
-        flex-direction: column;
+        background-color: #005aa4;
+        color: white;
         text-align: center;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      header a:hover {
+        background-color: #f0f0f0;
       }
 
       header img {
-        margin-right: 0;
-        margin-bottom: 10px;
+        height: 50px;
+        margin-right: 10px;
       }
 
-      .filter-options select {
-        width: 90%;
-        max-width: none;
-      }
-
-      .search-bar input {
-        width: 100%;
-      }
-    }
-
-    @media (max-width: 480px) {
       header h1 {
-        font-size: 16px;
+        margin: 0;
+        font-size: 20px;
+        line-height: 1.2;
+        flex: 1;
+        text-align: center;
       }
 
       header a {
-        font-size: 14px;
-        padding: 6px 10px;
+        background-color: white;
+        color: #005aa4;
+        padding: 8px 15px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        margin-left: 10px;
       }
-    }
-  </style>
-</head>
 
-<body>
-  <header>
-    <img src="https://cah.org.co/wp-content/uploads/2023/12/Logo-CAH-03.png" alt="Logo CAH">
-    <h1>Mapa de Actores y Servicios - Modelo de Graduación 2024</h1>
-    <a href="index.html">Inicio</a>
-  </header>
-  <main>
-    <div class="search-bar">
-      <input type="text" id="search" placeholder="Buscar por palabra clave...">
-    </div>
-    <div class="filter-options">
-      <select id="area-filter">
-        <option value="">Filtrar por Área</option>
-        <option value="Acceso A Justicia Y Asesoría Jurídica">Acceso A Justicia Y Asesoría Jurídica</option>
-        <option value="Adulto Mayor">Adulto Mayor</option>
-        <option value="Asesoría Psicosocial">Asesoría Psicosocial</option>
-        <option value="Asistencia Humanitaria">Asistencia Humanitaria</option>
-        <option value="Atención En Emergencias">Atención En Emergencias</option>
-        <option value="Comunicación">Comunicación</option>
-        <option value="Construcción De Paz">Construcción De Paz</option>
-        <option value="Cultura">Cultura</option>
-        <option value="Educación">Educación</option>
-        <option value="Familia">Familia</option>
-        <option value="Gestión Migración">Gestión Migración</option>
-        <option value="Gobierno Local">Gobierno Local</option>
-        <option value="Identificación, Registro Y Servicios Migratorios">Identificación, Registro Y Servicios
-          Migratorios</option>
-        <option value="Juventud">Juventud</option>
-        <option value="Lgbtiq+">Lgbtiq+</option>
-        <option value="Medellín Te Quiere Saludable">Medellín Te Quiere Saludable</option>
-        <option value="Medios De Vida">Medios De Vida</option>
-        <option value="Mujeres">Mujeres</option>
-        <option value="Niñez">Niñez</option>
-        <option value="Participación Ciudadana">Participación Ciudadana</option>
-        <option value="Programas Y Proyectos Con Enfoque Diferencial">Programas Y Proyectos Con Enfoque Diferencial
-        </option>
-        <option value="Proyecto De Vida">Proyecto De Vida</option>
-        <option value="Recreación Y Deporte">Recreación Y Deporte</option>
-        <option value="Salud">Salud</option>
-        <option value="Seguridad Y Convivencia">Seguridad Y Convivencia</option>
-        <option value="Todas">Todas</option>
-        <option value="Violencia De Género (Vbg)">Violencia De Género (Vbg)</option>
-      </select>
-      <select id="incidencia-filter">
-        <option value="">Filtrar por Incidencia</option>
-        <option value="Distrital">Distrital</option>
-        <option value="Internacional">Internacional</option>
-        <option value="Nacional">Nacional</option>
-        <option value="Área Metropolitana">Área Metropolitana</option>
-      </select>
-      <select id="sector-filter">
-        <option value="">Filtrar por Base o Sector</option>
-        <option value="Base Social">Base Social</option>
-        <option value="Cooperación Internacional">Cooperación Internacional</option>
-        <option value="Ong">Ong</option>
-        <option value="Privado">Privado</option>
-        <option value="Público">Público</option>
-        <option value="Social">Social</option>
-      </select>
-      <select id="comuna-filter">
-        <option value="">Filtrar por Comuna</option>
-        <option value="Todas">Todas</option>
-        <option value="1">1</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="13">13</option>
-        <option value="14">14</option>
-        <option value="16">16</option>
-        <option value="80">80</option>
-      </select>
-    </div>
+      main {
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+      }
 
-    <div id="actors-list">
-      <!-- Actor cards dynamically inserted here -->
-    </div>
-  </main>
+      .search-bar {
+        margin-bottom: 20px;
+        text-align: center;
+      }
 
-  <script>
-    const actors =
-    [
-  {
-    "nombre": "Profamilia",
-    "área": "Violencia De Género (Vbg)",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Ruta de acompañamiento en violencia basadas en genero",
-    "ofrece": "1. Interrupción voluntaria del embarazo. \n2. Prevención y atención en situación de riesgo\n3. Derechos sexuales y reproductivos.",
-    "requisitos": "1. Mayoria de edad\n2. Sujetarse bajo los criterios de la corte constitucional.",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Profamilia",
-    "dirección": "No especificado",
-    "teléfono": "3009124560 - (604) 2836688"
-  },
-  {
-    "nombre": "Integrate",
-    "área": "Todas",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Integrate Medellín",
-    "ofrece": "Integración local",
-    "requisitos": "Ninguno",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Integrate",
-    "dirección": "Cl. 59 #45-53, La Candelaria, Medellín",
-    "teléfono": NaN
-  },
-  {
-    "nombre": "Saviasalud",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Urgencias Odontologicas",
-    "ofrece": "Atención de urgencias de odontología, para migrates, no asegurados.",
-    "requisitos": "1. Menores de 18 años  \n2. Mujeres gestantes.",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Metrosalud",
-    "dirección": "No especificado",
-    "teléfono": "(604) 448 17 47"
-  },
-  {
-    "nombre": "Medellín te quiere saludable",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "1. Servicio de enfermeria.\n2. Orientación en salud sexual y reproductiva.\n3. Servicios de vacunación.\n4. Servicios Nutricionales.\n5. Servicios de salud Mental.\n6. Servicios de salud Bucal.\n7. Servicios Ambientales.",
-    "ofrece": "1. Visita Domiciliaria para identificación en riesgos de salud. \n2. Pruebas de detección de ETS.\n3. Vacunación a población en condición de vulnerabilidad.\n4. Información en seguridad alimentarias y nutricional.\n5. Entrega de Kits para el cuidado de la salud Bucal. \n6. Eduación en formación sobre temas ambientales.",
-    "requisitos": "Mayoria de edad",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": NaN,
-    "dirección": "Julián Escobar",
-    "teléfono": "3215092381 - 3006044444 - (604) 44444448 - (604) 444 4144"
-  },
-  {
-    "nombre": "Fundación Juanfe",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": "Todas",
-    "programa": "Enfoque 360",
-    "ofrece": "Apoyan a madres con un solo hijo para que tengan la posibilidad de estudiar una carrera técnica y de ingresar al mundo laboral, apoyando el ingreso de su hijo a un jardín infantil de Buen comienzo en el mismo horario en que estudiano trabajan.",
-    "requisitos": "Madres con un solo parto, y edades entre 16 y 20 años, con documento regular y bachillerato reconocido en Colombia o con nivel de formación básica ya concluida",
-    "población": "Mujeres",
-    "contacto": "Susana Echeverri Ángel",
-    "dirección": "Cra. 42 #48 - 35, La Candelaria, Medellín",
-    "teléfono": "3003675023 - (604) 448 08823"
-  },
-  {
-    "nombre": "Caribe Afirmativo",
-    "área": "Violencia De Género (Vbg)",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": "Todas",
-    "programa": "Grupos de apoyo y orientación psicosocial",
-    "ofrece": "proyectos para la inclusión y acceso a derechos de población LGBTQ+, brindado atención jurídica frente a VBG, barreras en acceso a derechos o discriminación; y consolidando redes y grupos de apoyo para población diversa.",
-    "requisitos": "población LGBTQ+",
-    "población": "Población LGBTQ+",
-    "contacto": "Juan Felipe",
-    "dirección": "Cra. 41 #57-21, Medellín, La Candelaria",
-    "teléfono": 3017389014
-  },
-  {
-    "nombre": "Buen comienzo",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Modalidad Entorno Familiar",
-    "ofrece": "Acompañamiento a primera infancia y familias",
-    "requisitos": NaN,
-    "población": "Mujeres",
-    "contacto": "Víctor Restrepo",
-    "dirección": "No especificado",
-    "teléfono": "3136355528 - 604 44 44 144"
-  },
-  {
-    "nombre": "INDER",
-    "área": "Recreación Y Deporte",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Adultos Mayores ",
-    "ofrece": "Espacios de participación ciudadana, salud física y mental, recreacion y deporte.",
-    "requisitos": "Personas mayores de 50 años, inscribirse con el intructor más cercano, con copia documento de identidad",
-    "población": "Adultos mayores",
-    "contacto": "Reinel Rodriguez",
-    "dirección": "Calle 47 D # 75-276, Velódromo",
-    "teléfono": "3146536244 - 604 369 90 00 - 604 44 44 144"
-  },
-  {
-    "nombre": "INDER",
-    "área": "Recreación Y Deporte",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Deportes Sin Límites",
-    "ofrece": "Subsidos cada dos meses para algunas personas con discapacidad. Promocion del derecho a la actividad física, el deporte y la recreación de las personas con discapacidad",
-    "requisitos": " Acercarse al instructor del punto de atención más cercano. Presentar copia documento de identidad y diagnóstico de la discapacidad para inscribirse. (Para acceder al subsidio deberá asistir 3 veces por semana durante 1 hora a la actividad física)",
-    "población": "Personas con discapacidad",
-    "contacto": "Reinel Rodriguez",
-    "dirección": "Calle 47 D # 75-276, Velódromo",
-    "teléfono": "3146536244 - 604 369 90 00 - 604 44 44 144"
+      .search-bar input {
+        width: 90%;
+        max-width: 600px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
 
-  },
-  {
-    "nombre": "Sistema de Bibliotecas Públicas de Medellín",
-    "área": "Cultura",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Sistema de Bibliotecas Públicas de Medellín",
-    "ofrece": "Libre acceso a la información, a la lectura, a la escritura, al conocimiento, al pensamiento y al disfrute de la cultura",
-    "requisitos": "Ninguno (para algunos espacios formativos, previa inscripción)",
-    "población": "General",
-    "contacto": "Sara Rueda",
-    "dirección": "No especificado",
-    "teléfono": 3164111395
-  },
-  {
-    "nombre": "EBAS de Ministerio de Salud",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "EBAS de Ministerio de Salud",
-    "ofrece": "Atención en salud en territorio",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Beatriz Rico",
-    "dirección": "No especificado",
-    "teléfono": 3156982377
-  },
-  {
-    "nombre": "Buen Comienzo - ICBF",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Equipo psicosocial",
-    "ofrece": "Acompañamiento a primera infancia y familias",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Diana Flores ",
-    "dirección": "No especificado",
-    "teléfono": 3116059736
-  },
-  {
-    "nombre": "Monseñor Valerio Jimenez",
-    "área": "Atención En Emergencias",
-    "incidencia": "Nacional",
-    "sector": "Privado",
-    "comuna": "Todas",
-    "programa": "Monseñor Valerio Jimenez",
-    "ofrece": "Prevención de la habitancia en calle desde el apoyo psicosocial, comedor comunitario y acceso a otros servicios",
-    "requisitos": "Asistir en los horarios establecidos",
-    "población": "General",
-    "contacto": "Bibiana",
-    "dirección": "Cl. 57 #49-77, La Candelaria, Medellín",
-    "teléfono": "3147707671 - (604) 2747411"
-  },
-  {
-    "nombre": "Caribe Afirmativo",
-    "área": "Lgbtiq+",
-    "incidencia": "Nacional",
-    "sector": "Privado",
-    "comuna": "Todas",
-    "programa": "Caribe Afirmativo",
-    "ofrece": "Nuestro propósito es incidir en la construcción y posicionamiento de agendas de diversidad sexual y de género en el Caribe, que permitan el reconocimiento de los derechos y el acceso a la justicia de las personas LGBTI en un escenario de posconflicto.",
-    "requisitos": "Diversidades sexuales, expresiones e identidades de género diversas",
-    "población": "Población LGBTQ+",
-    "contacto": "Sara Lopez Mejía",
-    "dirección": "No especificado",
-    "teléfono": 3107133026
-  },
-  {
-    "nombre": "Parque Explora",
-    "área": "Cultura",
-    "incidencia": "Distrital",
-    "sector": "Privado",
-    "comuna": "Todas",
-    "programa": "Accesibilidad",
-    "ofrece": "Portafolio de servicios de naturaleza educativa para transformar la escuela y hacer de las ciencias y las tecnologías universos cercanos a todos. Accesibilidad, formación",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "María Antonia",
-    "dirección": "Cra. 53 #7375, Aranjuez, Medellín",
-    "teléfono": "3147714114 - (604) 5168300"
-  },
-  {
-    "nombre": "Secretaría de Juventud",
-    "área": "Juventud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Gestores/as territoriales",
-    "ofrece": "Salud pública juvenil, formación, promoción y acompañamiento en la participación juvenil",
-    "requisitos": "Estar en el rango de edad (18-28 años)",
-    "población": "Juventud (18-28 años)",
-    "contacto": "Camilo Pineda",
-    "dirección": "Calle 44 N 52 – 165, Centro Administrativo la Alpujarra",
-    "teléfono": "3015993162 - (604) 444 4144"
-  },
-  {
-    "nombre": "Escuchaderos",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Escuchaderos",
-    "ofrece": "Atención psicológica en territorio en las comunas del Distrito de Medellín",
-    "requisitos": "Ninguna",
-    "población": "General",
-    "contacto": "Carlos Peña",
-    "dirección": "Calle 44 N 52 – 165, Centro Administrativo la Alpujarra",
-    "teléfono": "3168729979 - (604) 444 4144"
-  },
-  {
-    "nombre": "Corporación AVE Colibrí",
-    "área": "Familia",
-    "incidencia": "Distrital",
-    "sector": "Privado",
-    "comuna": "Todas",
-    "programa": "Alimentación, Vivienda y Educación",
-    "ofrece": "Formación integral de las familias (Pilares: Alimentación, Vivienda, Educación). Subsidios alimenticios, mejoras de vivienda.",
-    "requisitos": "Ser parte del barrio Santo Domingo, comuna 1; Lider de Hogar( Madre o padre cabeza de familia); Hijos en edad escolar (preferiblemente 5 - 12 años); Ningun integrante de la familia debe contar con un emplo formal; Presentar dificultades físicas en su vivienda. ",
-    "población": "Familias",
-    "contacto": "Natalia Ramírez",
-    "dirección": "No especificado",
-    "teléfono": 3046768741
-  },
-  {
-    "nombre": "Secretaría de las Mujeres ",
-    "área": "Mujeres",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Salud Menstrual",
-    "ofrece": "Espacios formativos",
-    "requisitos": "contribuir a la igualdad de derechos y oportunidades entre mujeres y hombres y aportar a la disminución de prácticas discriminatorias que atenten contra el desarrollo político, social, económico y cultural de las mujeres del Municipio de Medellín, a través de la implementación de la Política Pública para las Mujeres Urbanas y Rurales de la ciudad - Acuerdo 22 de 2003.",
-    "población": "Mujeres",
-    "contacto": "Diana Marín. Y Anderson Zamora ",
-    "dirección": "Calle 44 N 52 – 165, Centro Administrativo la Alpujarra",
-    "teléfono": "3108163253 - 3114453812 - (604) 444 4144"
-  },
-  {
-    "nombre": "Secretaría de desarrollo económico",
-    "área": "Medios De Vida",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Centros de Desarrollo Empresarial Zonal (CEDEZO)",
-    "ofrece": "La Secretaría de Desarrollo Económico es una dependencia del nivel central que tendrá como responsabilidad fortalecer la productividad, la competitividad y la sostenibilidad mediante mecanismos de desarrollo empresarial, asociatividad, intermediación laboral, alianzas sociales - público - privadas, internacionalización e innovación, con el fin de favorecer el desarrollo económico de la ciudad y el mejoramiento de la calidad de vida de sus habitantes.",
-    "requisitos": "Ninguna",
-    "población": "General",
-    "contacto": "Juan Zea",
-    "dirección": "Calle 44 N 52 – 165, Centro Administrativo la Alpujarra",
-    "teléfono": "3167669089 - 3114453812 - (604) 444 4144"
-  },
-  {
-    "nombre": "Unidad de Niñez",
-    "área": "Niñez",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Unidad de Niñez",
-    "ofrece": "LA MAGIA DE JUGAR ES SANAR - MEDELLÍN CUIDA SUS NIÑAS, NIÑOS Y ADOLESCENTES - CENTRO DE DIAGNÓSTICO Y DERIVACIÓN -" ,
-    "requisitos": NaN,
-    "población": "Niñez",
-    "contacto": "Lina Marin",
-    "dirección": "Cra. 70 #80-6, Cordoba, Medellín",
-    "teléfono": "3052448830 - 3114453812 - (604) 385 9250 - (604) 444 4144"
-  },
-  {
-    "nombre": "Unidad de Familia - CIF - Escuela para la Inclusión",
-    "área": "Familia",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Unidad de Familia - CIF - Escuela para la Inclusión",
-    "ofrece": "Caracterización de la población, acercamiento de oferta dependiendo de las necesidades identificadas, apoyo psicosocial.",
-    "requisitos": NaN,
-    "población": "Familias",
-    "contacto": "Carolina Cardona - Erika Coronel (Unidad de Familia)",
-    "dirección": "No especificado",
-    "teléfono": "3128505774- 3187124509"
-  },
-  {
-    "nombre": "Secretaría de Participación Ciudadana",
-    "área": "Participación Ciudadana",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Centros de Desarrollo Social",
-    "ofrece": "Los Centros de Desarrollo Social de Medellín son espacios para la participación ciudadana donde se promueve la convivencia, se ofrecen programas que benefician a todos los habitantes de las comunas y corregimientos de la ciudad de Medellín, se motiva la integración en torno a las organizaciones sociales, y al encuentro y el disfrute de nuestros escenarios de ciudad. Los CDS tienen como objeto social la promoción del encuentro y brindan herramientas para que los ciudadanos participen en la gestión del desarrollo local, se vinculen a la toma de decisiones para su comunidad, y aporten a la sostenibilidad de los procesos que benefician a todos los habitantes de Medellín.",
-    "requisitos": "Depende del espacio o actividad. En algunos casos pertenecer a Organizaciones Sociales del territorio. En general, los CDS operan como un espacio de participación ciudadano con amplia oferta para la comunidad ",
-    "población": "General",
-    "contacto": "Daniel",
-    "dirección": "Cl 44 #52 - 165, La Candelaria, Medellín",
-    "teléfono": 3113073267
-  },
-  {
-    "nombre": "Casas de Justicia",
-    "área": "Acceso A Justicia Y Asesoría Jurídica",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa":"Casas de Justicia",
-    "ofrece": " Centros de orientación, referencia y prestación de servicios de solución de conflictos, mediante mecanismos de justicia formal y no formal. Servicios: asesorías jurídicas, atención psicológica, solución de conflictos de convivencia ciudadana, restablecimiento de los derechos de los miembros de la familia por situaciones de violencia intrafamiliar, promoción de los derechos humanos",
-    "requisitos": "Ninguna",
-    "población": "General",
-    "contacto": "Wadneth Lemus - Yaira Guzmán - ",
-    "dirección": "No especificado",
-    "teléfono": "3218767327 - 3206149946"
-  },
-  {
-    "nombre": "Secretaría de Participación Ciudadana",
-    "área": "Participación Ciudadana",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Escuelas de participación ciudadana",
-    "ofrece": "Se trata de una estrategia  de la Secretaría de Participación Ciudadana, con la que podremos aprender juntos, construir, desarrollar capacidades para los nuevos liderazgos, y sobre todo identificar las necesidades y fortalezas que tenemos en nuestros territorios, para que juntos transformemos la Medellín Futuro.  ",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Daniel / Sandra ",
-    "dirección": "Cl 44 #52 - 165, La Candelaria, Medellín",
-    "teléfono": "3113073267 / 3006565581"
-  },
-  {
-    "nombre": "Consultorio Jurídico UdeA",
-    "área": "Acceso A Justicia Y Asesoría Jurídica",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Consultorios Jurídicos",
-    "ofrece": "Asesoría jurídica",
-    "requisitos": "Ser mayores de edad",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": NaN,
-    "dirección": "calle 49 Nº 42A-39",
-    "teléfono": "(604) 2199865-2199866-2199893"
-  },
-  {
-    "nombre": "Profamilia - Jóvenes",
-    "área": "Salud",
-    "incidencia": "Nacional",
-    "sector": "Privado",
-    "comuna": "Todas",
-    "programa": "Red de Jóvenes",
-    "ofrece": "Voluntariado juvenil para la promoción de procesos que contribuyan a otros adolescentes y jóvenes en el goce de sus Derechos Sexuales y Derechos Reproductivos.",
-    "requisitos": "Estar en el rango de edad (18-28 años)",
-    "población": "General",
-    "contacto": "Claudia",
-    "dirección": "Calle 54 # 43 - 47",
-    "teléfono": "3128677038 - 300 9124560"
-  },
-  {
-    "nombre": "Personería",
-    "área": "Acceso A Justicia Y Asesoría Jurídica",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Personería ",
-    "ofrece": "A la personería como ente de control y vigilancia del gobierno local le competen importantes atribuciones de defensa, protección y promoción de los derechos humanos, de salvaguarda del interés general y de la prevalencia del bien común",
-    "requisitos": "Sin restricciones",
-    "población": "General",
-    "contacto": "Sonia Peña",
-    "dirección": "Cra. 53a #42 - 101",
-    "teléfono": "3212029479 - (604) 3849999"
-  },
-  {
-    "nombre": "Secretaría de paz y Derechos Humanos",
-    "área": "Construcción De Paz",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Secretaría de paz y Derechos Humanos",
-    "ofrece": "La Secretaría de Paz y Derechos Humanos tiene como función principal orientar y coordinar la construcción de la paz territorial en el Municipio de Medellín, mediante la definición e implementación de estrategias relacionadas con la prevención de la violencia y hechos victimizantes que afectan la vida y los entornos de los y las habitantes de la ciudad, la promoción de la justicia restaurativa y la seguridad humana integral que permita la transformación de los conflictos y la protección de la vida como valor fundamental",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Gladys ",
-    "dirección": "Cl 44 #52 - 165, La Candelaria, Medellín",
-    "teléfono": "3122504279 - (604) 444 4144"
-  },
-  {
-    "nombre": "Museo de Antioquia",
-    "área": "Cultura",
-    "incidencia": "Distrital",
-    "sector": "Privado",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Contribuyen desde el arte a la construcción de ciudadanías comprometidas con los desafíos del presente.",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Isabela Agudelo",
-    "dirección": "Cl. 52 #52-43, La Candelaria, Medellín",
-    "teléfono": "3013752548 - (604) 2513636"
-  },
-  {
-    "nombre": "Museo Casa de la Memoria",
-    "área": "Cultura",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Museo Casa de la Memoria",
-    "ofrece": "El Museo Casa de la Memoria se gesta desde las iniciativas y resistencias de las víctimas del conflicto armado colombiano, quienes, a través de ejercicios de construcción colectiva de memorias y de reparación simbólica, buscaron una Casa para el diálogo abierto y plural, crítico y reflexivo, que contribuyera a la superación del conflicto y las violencias en Medellín, Antioquia y el país.",
-    "requisitos": "Sin restricciones",
-    "población": "General",
-    "contacto": NaN,
-    "dirección": "Parque Bicentenario, Cl. 51 #36-66",
-    "teléfono": "(604) 5202020"
-  },
-  {
-    "nombre": "Fundación Bien Humano",
-    "área": "Familia",
-    "incidencia": "Distrital",
-    "sector": "Privado",
-    "comuna": "Todas",
-    "programa": "Fundación Bien Humano",
-    "ofrece": "Gestión del conocimiento e incidencia política. Formación y acompañamiento",
-    "requisitos": "Sin restricciones",
-    "población": "Familias",
-    "contacto": "Ana Salgado",
-    "dirección": "EDIFICIO LUCRECIO VÉLEZ, Cra. 49 #N°. 50-30 of. 701",
-    "teléfono": "3044198423 - (604) 45128797"
-  },
-  {
-    "nombre": "Gerencia de diversidades sexuales y de genero",
-    "área": "Lgbtiq+",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Gerencia de diversidades sexuales y de genero ",
-    "ofrece": "Su propósito es brindar asesoría, acompañamiento y orientación jurídica, así como realizar articulaciones público-privadas para la promoción, protección, restitución y garantía de los derechos de la población con orientaciones sexuales e identidades de género no hegemónicas.",
-    "requisitos": "Diversidades sexuales, expresiones e identidades de género.",
-    "población": "Población LGBTQ+",
-    "contacto": "Edgar Yepez",
-    "dirección": "Cra. 48 #57 - 21, La Candelaria, Medellín",
-    "teléfono": "3148876722 - 43855555 ext. 8479"
-  },
-  {
-    "nombre": "Proyecto Emergencias UPSE",
-    "área": "Atención En Emergencias",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": NaN,
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Doris Manco ",
-    "dirección": "No especificado",
-    "teléfono": 3122553496
-  },
-  {
-    "nombre": "Entornos Protectores",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Primera Infancia",
-    "ofrece": "Acceso a educación inicial para Buen Comienzo y Modalidad Familiar",
-    "requisitos": "De 0 a 5 años",
-    "población": "Niñez",
-    "contacto": "Astrid Restrepo",
-    "dirección": "No especificado",
-    "teléfono": 3108456163
-  },
-  {
-    "nombre": "Secretaría de Seguridad y Convivencia",
-    "área": "Seguridad Y Convivencia",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Planea, lidera, gestiona, articula, desarrolla, implementa y evalua todas las acciones tendientes a fortalecer la seguridad y la convivencia ciudadana, mediante la formulación e implementación de políticas y estrategias que promuevan la civilidad, el control de las indisciplinas sociales, la atención de las problemáticas familiares.",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "David Alvarez",
-    "dirección": "Cl 44A #52 – 165, La Candelaria, Medellín",
-    "teléfono": "3206789269 - (604) 4444144"
-  },
-  {
-    "nombre": "Secretaría de Participación Ciudadana",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Componente Formación",
-    "ofrece": "Desarrollar capacidades para los nuevos liderazgos, y sobre todo identificar las necesidades y fortalezas que tenemos en nuestros territorios,",
-    "requisitos": "Inscripción previa por medio de las diferentes Juntas de Acción Comunal de los barrios, las Juntas Administradoras Locales o directamente con la Secretaría de\nParticipación ciudadana en el email:\nescuelasdeparticipacionciudadana@medellin.gov.co.                                                      Niños y niñas: de 7 a 10 años de edad.\nAdolescentes: de 11 a 13 años de edad.\nJóvenes: de 14 a 17 años de edad.\nAdultos: de 18 años de edad en adelante.",
-    "población": "General",
-    "contacto": "Sandra ",
-    "dirección": "Cl 44A #52 – 165, La Candelaria, Medellín",
-    "teléfono": "3006565581 (604) 4444144"
-  },
-  {
-    "nombre": "Estación de Policía Aranjuez",
-    "área": "Seguridad Y Convivencia",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 4,
-    "programa": NaN,
-    "ofrece": "Seguridad",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": NaN,
-    "dirección": "Cl. 71 #37-52, Manrique Oriental",
-    "teléfono": " 323 5065800 - 3046289308"
-  },
-  {
-    "nombre": "Comisaria de Familia",
-    "área": "Acceso A Justicia Y Asesoría Jurídica",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 4,
-    "programa": NaN,
-    "ofrece": "Restablecimiento de derechos. Asesoría jurídica. Atención psicosocial. Remisiones a entidades",
-    "requisitos": "Ser de la comuna. Presentar alguna situación de vulneración de derechos",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Joaquin Emilio Gallo",
-    "dirección": "CR 52  # 71 - 84",
-    "teléfono": "3002095168 - 3855555 ext 9785- 9789- 9787 - 2097"
-  },
-  {
-    "nombre": "Gesco",
-    "área": "Acceso A Justicia Y Asesoría Jurídica",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 4,
-    "programa": "Policia comunitaria",
-    "ofrece": "Acompañamiento cultural a iniciativas comunitarias",
-    "requisitos": "Ser población de la comunidad",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Bohorquez Diaz Wilmar",
-    "dirección": "No especificado",
-    "teléfono": 3014455590
-  },
-  {
-    "nombre": "Casa Cultural de Moravia",
-    "área": "Programas Y Proyectos Con Enfoque Diferencial",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 4,
-    "programa": "Cultura y recreación. Capacitaciones. Salud.",
-    "ofrece": "Acompañamiento cultural a iniciativas comunitarias",
-    "requisitos": "Ser población de la comunidad",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Eliana Londoño",
-    "dirección": "Cl. 82a #52-25, Aranjuez, Medellín",
-    "teléfono": "3192271460 - (604) 42136010"
-  },
-  {
-    "nombre": "Secretaría de Gobierno",
-    "área": "Programas Y Proyectos Con Enfoque Diferencial",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 4,
-    "programa": "Seguridad y convivencia",
-    "ofrece": "Relacionamiento y articulación interinstitucional en el territorio",
-    "requisitos": "Relacionamiento interinstitucional con profesionales para oferta de servicios",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Natalia Zapata",
-    "dirección": "No especificado",
-    "teléfono": 3013706464
-  },
-  {
-    "nombre": "Secretaría de inclusión social",
-    "área": "Atención En Emergencias",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "123 social",
-    "ofrece": "Atención en emergencia",
-    "requisitos": "Gestión de casos ",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Yurany Tabares",
-    "dirección": "Cl 44 #52 - 165, La Candelaria, Medellín",
-    "teléfono": 3233750581
-  },
-  {
-    "nombre": "Secretaría seguridad y convivencia",
-    "área": "Acceso A Justicia Y Asesoría Jurídica",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 4,
-    "programa": "Seguridad y convivencia",
-    "ofrece": "Gestionan casos de seguridad",
-    "requisitos": "Ser población de la comunidad",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Juan Camilo Jaramillo",
-    "dirección": "No especificado",
-    "teléfono": 3105405786
-  },
-  {
-    "nombre": "Secretaría seguridad y convivencia",
-    "área": "Acceso A Justicia Y Asesoría Jurídica",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 4,
-    "programa": "Seguridad y convivencia",
-    "ofrece": "Articulación interinstitucional",
-    "requisitos": "Relacionamiento interinstitucional con profesionales para oferta de servicios",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Eliana Villamizar",
-    "dirección": "Cl 44 #52 - 165, La Candelaria, Medellín",
-    "teléfono": 3117068919
-  },
-  {
-    "nombre": "Medellín Te Quiere saludable",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 4,
-    "programa": "Salud",
-    "ofrece": "Medellín te quiere saludable",
-    "requisitos": "oferta de servicios salud",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Julián Escobar",
-    "dirección": "No especificado",
-    "teléfono": 3215092381
-  },
-  {
-    "nombre": "Medglobal",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Cooperación Internacional",
-    "comuna": "Todas",
-    "programa": "Programa de salud",
-    "ofrece": "Programa de atención en salud a población migrante y de acogida",
-    "requisitos": "Ser Población migrante y de acogida",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": NaN,
-    "dirección": "No especificado",
-    "teléfono": NaN
-  },
-  {
-    "nombre": "USAID",
-    "área": "Medios De Vida",
-    "incidencia": "Distrital",
-    "sector": "Cooperación Internacional",
-    "comuna": 4,
-    "programa": "Mujeres Equidad y Empleo",
-    "ofrece": "Programa de formación en empleabilidad para mujeres migrantes",
-    "requisitos": NaN,
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": NaN,
-    "dirección": "No especificado",
-    "teléfono": "571-275-2000"
-  },
-  {
-    "nombre": "Fundación Capital",
-    "área": "Medios De Vida",
-    "incidencia": "Área Metropolitana",
-    "sector": "Cooperación Internacional",
-    "comuna": 4,
-    "programa": "Inclusión socio económica",
-    "ofrece": "Talleres de salud financiera y acceso a bancarización ",
-    "requisitos": "Población migrante y de acogida",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Diana Escobar",
-    "dirección": "No especificado",
-    "teléfono": 3205788966
-  },
-  {
-    "nombre": "Secretaria de Paz y Derechos Humanos",
-    "área": "Atención En Emergencias",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Ruta de prevención de uso y utilización de menores ",
-    "ofrece": "Atención inmediata en emergencia de NNA con riesgos de uso y utilización por parte de grupos armados, atención psicojuridica ",
-    "requisitos": NaN,
-    "población": "Niños, niñas y adolescentes",
-    "contacto": "Esteban Rodriguez ",
-    "dirección": "No especificado",
-    "teléfono": "311 7200960"
-  },
-  {
-    "nombre": "Corpvolven",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Privado",
-    "comuna": "Todas",
-    "programa": "Corpvolven",
-    "ofrece": "Acompañamiento a población migrante en Salud, Preregistro,  ",
-    "requisitos": NaN,
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Steffani Bravo",
-    "dirección": "Calle 47 #43-28",
-    "teléfono": "3117589134/3232382518"
-  },
-  {
-    "nombre": "Parroquia San Lorenzo Mártir",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Social",
-    "comuna": 3,
-    "programa": "Centro de escucha ",
-    "ofrece": "Asesoría Psicologica ",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Juliana Saldarriaga ",
-    "dirección": "sector la honda, Cl. 71 #24 b 32 int 101, Versalles II, Medellín, Manrique",
-    "teléfono": "321 7776286 - 301 4650890"
-  },
-  {
-    "nombre": "Secretaria de Salud ",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 3,
-    "programa": "Escuchaderos",
-    "ofrece": "Atención Psicologica ",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": NaN,
-    "dirección": "Cl 44 #52 - 165, La Candelaria",
-    "teléfono": "444 44 48"
-  },
-  {
-    "nombre": "Corporación Creando Futuro: Hogar Infantil La magia de Aprender",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Privado",
-    "comuna": 3,
-    "programa": "Hogar Infantil La magia de Aprender",
-    "ofrece": NaN,
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Katherine Sossa",
-    "dirección": "Cl. 69 #33-12, Medellín, Manrique",
-    "teléfono": "313 7818966"
-  },
-  {
-    "nombre": "CEDEZO",
-    "área": "Medios De Vida",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Medios de vida, Formación, Empleabilidad",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "John Esneider Arango",
-    "dirección": "No especificado",
-    "teléfono": "300 7497799 - 300 7415610"
-  },
-  {
-    "nombre": "Escuchadero",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 13,
-    "programa": "Acompañamiento psicológico",
-    "ofrece": "ninguno",
-    "requisitos": "Todas",
-    "población": "General",
-    "contacto": NaN,
-    "dirección": "No especificado",
-    "teléfono": 3114744839
-  },
-  {
-    "nombre": "Línea Amiga",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "emergencias en salud mental( suicidio, trastorno mental en agitación y síndrome de abstinencia) ",
-    "requisitos": "ninguno",
-    "población": "General",
-    "contacto": "no aplica",
-    "dirección": "No especificado",
-    "teléfono": "604 444 4448 - 123 social"
-  },
-  {
-    "nombre": "CAMMI Centro de atención a la población migrante",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 13,
-    "programa": "Planificación familiar e interrupción voluntaria",
-    "ofrece": NaN,
-    "requisitos": "celular o conexión a internet",
-    "población": "Mujeres",
-    "contacto": "no aplica",
-    "dirección": "No especificado",
-    "teléfono": 3158398902
-  },
-  {
-    "nombre": "Famicove",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": 16,
-    "programa": "Medicina general -pediatría-Oftalmología Valoración-ginecológica\nCrecimiento y desarrollo\nTamizaje Bucal",
-    "ofrece": "Medicina general -pediatría-Oftalmología Valoración-ginecológica\nCrecimiento y desarrollo\nTamizaje Bucal",
-    "requisitos": "ninguno",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "no aplica",
-    "dirección": "Cl. 32 #76-56 interior 3, Medellín, Belén",
-    "teléfono": "350 5428405\n305 3329108"
-  },
-  {
-    "nombre": "Programa de familias saludables",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 14,
-    "programa": "Valoración y atención para niñas y niños de 0 a 5 años con riesgo de desnutrición ",
-    "ofrece": NaN,
-    "requisitos": "niñas y niños de 0 a 5 años",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "no aplica",
-    "dirección": "No especificado",
-    "teléfono": "6044441101 ext 113"
-  },
-  {
-    "nombre": "OIM",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Cooperación Internacional",
-    "comuna": "Todas",
-    "programa": "Afiliación a salud ",
-    "ofrece": "Afiliación a salud ",
-    "requisitos": "ninguno",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Denny OIM",
-    "dirección": "No especificado",
-    "teléfono": 3246838282
-  },
-  {
-    "nombre": "ANAUCO",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": "Todas",
-    "programa": "Afiliación a salud ",
-    "ofrece": "Afiliación a salud ",
-    "requisitos": "ninguno",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Monica Sequera",
-    "dirección": "No especificado",
-    "teléfono": "3013503893 - 3134001784"
-  },
-  {
-    "nombre": "Hospital La Maria",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Atención medica y pruebas rapidas, control prenatal, retovirales",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Celianys",
-    "dirección": "No especificado",
-    "teléfono": 3234821898
-  },
-  {
-    "nombre": "Humanity & Inclusion",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Atención en discapacidad, Atención a migrantes",
-    "requisitos": "ninguno",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "no aplica",
-    "dirección": "Calle 32E # 75C - 3, Medellín",
-    "teléfono": "3222329039 - 3147059837 - 311 6091517"
-  },
-  {
-    "nombre": "Corporación Educativa Combos",
-    "área": "Proyecto De Vida",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Atención psicosocial para el fortalecimiento del proyecto de vida de niñas, niños y jóvenes",
-    "requisitos": "niñas, niños y jóvenes",
-    "población": "General",
-    "contacto": "no aplica",
-    "dirección": "Cl. 51 #56A-35, La Candelaria, Medellín",
-    "teléfono": "6045011719 - 3113108357 - 3128674261"
-  },
-  {
-    "nombre": "Bibliocielo",
-    "área": "Cultura",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 1,
-    "programa": NaN,
-    "ofrece": "Integración comunitaria",
-    "requisitos": "Ninguno",
-    "población": "General",
-    "contacto": "Sergio Ledesma",
-    "dirección": "Cra. 22b #96-55, Maria Cano Carambola",
-    "teléfono": "3014584959 - 319 7084911"
-  },
-  {
-    "nombre": "Colectivo Zen-Tir La Utopia Nororiental",
-    "área": "Participación Ciudadana",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 1,
-    "programa": NaN,
-    "ofrece": "Integración comunitaria",
-    "requisitos": "Ninguno",
-    "población": "Niños, niñas y adolescentes",
-    "contacto": "Alejandra Montoya Mesa",
-    "dirección": "No especificado",
-    "teléfono": 3007319644
-  },
-  {
-    "nombre": "Alcaldía de Medellín",
-    "área": "Programas Y Proyectos Con Enfoque Diferencial",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 1,
-    "programa": NaN,
-    "ofrece": "Prevención de la discriminación por orientación sexual e identidad de género",
-    "requisitos": "Ninguno",
-    "población": "Población LGBTQ+",
-    "contacto": "Lina María Muñoz",
-    "dirección": "No especificado",
-    "teléfono": 3045610452
-  },
-  {
-    "nombre": "JAC Carpinelo",
-    "área": "Participación Ciudadana",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 1,
-    "programa": NaN,
-    "ofrece": "Integración comunitaria",
-    "requisitos": "Residir en el Barrio Carpinelo",
-    "población": "General",
-    "contacto": "Karen Martínez",
-    "dirección": "Cl. 97 #22 b63, Maria Cano Carambola",
-    "teléfono": 3245764440
-  },
-  {
-    "nombre": "Voluntariado - Corporación Opción Legal",
-    "área": "Asistencia Humanitaria",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Fortalecimiento comunitario",
-    "requisitos": "Residir en la comuna",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Claudia Cárdenas",
-    "dirección": "No especificado",
-    "teléfono": 3146659383
-  },
-  {
-    "nombre": "Corporación Colectiva Justicia Mujer",
-    "área": "Violencia De Género (Vbg)",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Asistencia Humanitaria y Participación",
-    "requisitos": "VBG",
-    "población": "Mujeres",
-    "contacto": "Ángela Álvarez",
-    "dirección": "Cra 79 #52A - 23, Laureles - Estadio",
-    "teléfono": "3006439855 - (604) 4798898"
-  },
-  {
-    "nombre": "Inder",
-    "área": "Cultura",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Integración comunitaria",
-    "requisitos": "Ninguno",
-    "población": "General",
-    "contacto": "Daniel Bernal",
-    "dirección": "Calle 47 D # 75-276, Velódromo",
-    "teléfono": 3173664081
-  },
-  {
-    "nombre": "Mercy Corps",
-    "área": "Asistencia Humanitaria",
-    "incidencia": "Nacional",
-    "sector": "Ong",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Medios de vida/servicios de salud/ asesoría jurídica",
-    "requisitos": "Vulneración de derechos",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Brenda Aristizábal",
-    "dirección": "No especificado",
-    "teléfono": "3154535982 - 3009109995"
-  },
-  {
-    "nombre": "Grupo Adulto Mayor",
-    "área": "Adulto Mayor",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 1,
-    "programa": NaN,
-    "ofrece": "Integración comunitaria",
-    "requisitos": "Adultos mayores",
-    "población": "Adultos mayores",
-    "contacto": "Margarita Cano",
-    "dirección": "No especificado",
-    "teléfono": 3044915599
-  },
-  {
-    "nombre": "Buen comienzo",
-    "área": "Niñez",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Buen Comienzo",
-    "requisitos": "Brinda educación inicial y promueve el desarrollo integral, diverso, incluyente y autónomo de NN y sus familias durante sus primeros cinco años de vida",
-    "población": "Niñez",
-    "contacto": "Andrés Agudelo",
-    "dirección": "No especificado",
-    "teléfono": 3214438919
-  },
-  {
-    "nombre": "Corporación Convivamos",
-    "área": "Participación Ciudadana",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Integración comunitaria",
-    "requisitos": "Ninguno",
-    "población": "General",
-    "contacto": "Yirleni",
-    "dirección": "Calle 95 A 39-24. Medellín",
-    "teléfono": "3043810955 - (604) 236 53 98"
-  },
-  {
-    "nombre": "Atención psicosocial para el fortalecimiento del proyecto de vida de niñas, niños y jóvenes",
-    "área": "Cultura",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Atención psicosocial para el fortalecimiento del proyecto de vida de NNA",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Juliana",
-    "dirección": "No especificado",
-    "teléfono": 3001818193
-  },
-  {
-    "nombre": "Mis años dorados",
-    "área": "Cultura",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 1,
-    "programa": NaN,
-    "ofrece": "Actividades físicas, culturales e integración en la comunidad",
-    "requisitos": "Ninguno",
-    "población": "Adultos mayores",
-    "contacto": "Esperanza Serna",
-    "dirección": "No especificado",
-    "teléfono": 3045556020
-  },
-  {
-    "nombre": "Grupo de Baile \"Zafiro\"",
-    "área": "Cultura",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 1,
-    "programa": NaN,
-    "ofrece": "Actividades artísticas y culturales",
-    "requisitos": "Residir en la comuna",
-    "población": "Niños, niñas y adolescentes",
-    "contacto": "Alexander",
-    "dirección": "No especificado",
-    "teléfono": 3022543662
-  },
-  {
-    "nombre": "JAC Popular 1",
-    "área": "Participación Ciudadana",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 1,
-    "programa": NaN,
-    "ofrece": "Integración comunitaria",
-    "requisitos": "Residir en el Barrio Popular",
-    "población": "General",
-    "contacto": "Juan estrada",
-    "dirección": "Cra. 43 #108-91, La Isla, Medellín, Popular",
-    "teléfono": "320 4298731"
-  },
-  {
-    "nombre": "JAC Popular 2 Parte Central",
-    "área": "Participación Ciudadana",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 1,
-    "programa": NaN,
-    "ofrece": "Integración comunitaria",
-    "requisitos": "Residir en el Barrio Popular",
-    "población": "General",
-    "contacto": "Lucila Gallo",
-    "dirección": "No especificado",
-    "teléfono": "320 7299976"
-  },
-  {
-    "nombre": "JAC Nuevo Horizonte",
-    "área": "Participación Ciudadana",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 1,
-    "programa": NaN,
-    "ofrece": "Integración comunitaria",
-    "requisitos": "Residir en el Barrio ",
-    "población": "General",
-    "contacto": "Alejandro Giraldo",
-    "dirección": "Carrera 37 #108A-13",
-    "teléfono": "301 3940944"
-  },
-  {
-    "nombre": "JAC Santo Domingo 1",
-    "área": "Participación Ciudadana",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 1,
-    "programa": NaN,
-    "ofrece": "Integración comunitaria",
-    "requisitos": "Residir en el Barrio Santo Domingo",
-    "población": "General",
-    "contacto": "Nini Restrepo",
-    "dirección": "Cl. 107b, Santo Domingo Savio I",
-    "teléfono": "300 5220560"
-  },
-  {
-    "nombre": "ASOCOMUNAL",
-    "área": "Participación Ciudadana",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 1,
-    "programa": NaN,
-    "ofrece": "Integración comunitaria",
-    "requisitos": "Delegados por JAC",
-    "población": "General",
-    "contacto": "Diego Herrera",
-    "dirección": "Cra. 36bb #102c 08, Granizal",
-    "teléfono": "305 3774367"
-  },
-  {
-    "nombre": "Corporación ANAUCO",
-    "área": "Cultura",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 1,
-    "programa": NaN,
-    "ofrece": "Actividades físicas, culturales e integración en la comunidad",
-    "requisitos": "Ninguno",
-    "población": "General",
-    "contacto": "Alejandra González",
-    "dirección": "No especificado",
-    "teléfono": "300 7426086"
-  },
-  {
-    "nombre": "Corporación Yenyly",
-    "área": "Asistencia Humanitaria",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": 1,
-    "programa": NaN,
-    "ofrece": "Actividades que buscan mejorar el acceso a derechos y servicios",
-    "requisitos": "Ninguno",
-    "población": "General",
-    "contacto": "Karen Pérez",
-    "dirección": "No especificado",
-    "teléfono": 3106446330
-  },
-  {
-    "nombre": "Regulación Migración",
-    "área": "Identificación, Registro Y Servicios Migratorios",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 16,
-    "programa": NaN,
-    "ofrece": "Asesoría y regulación",
-    "requisitos": NaN,
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Juan Carlos",
-    "dirección": "No especificado",
-    "teléfono": 3204910362
-  },
-  {
-    "nombre": "Migración Red Vida",
-    "área": "Identificación, Registro Y Servicios Migratorios",
-    "incidencia": "Nacional",
-    "sector": "Cooperación Internacional",
-    "comuna": 16,
-    "programa": NaN,
-    "ofrece": "Afiliación en salud, capacitaciones, atención prenatal, jornadas de salud, accceso a derechos, derivaciones.",
-    "requisitos": NaN,
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Denis Sanchez ",
-    "dirección": "No especificado",
-    "teléfono": 3246838282
-  },
-  {
-    "nombre": "Medellín te quiere saludable",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Medellín Te Quiere saludable",
-    "requisitos": NaN,
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "JULIAN ESCOBAR",
-    "dirección": "No especificado",
-    "teléfono": 3215092381
-  },
-  {
-    "nombre": "Unidad Administrativa Especial Buen Comienzo",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 8,
-    "programa": NaN,
-    "ofrece": NaN,
-    "requisitos": "Tener hasta 5 años",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": NaN,
-    "dirección": "No especificado",
-    "teléfono": "SIN DATO"
-  },
-  {
-    "nombre": "PROGRAMA ARROBA MEDELLIN",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "@Medellín, la Ciudadela Universitaria Digital de Sapiencia es un ecosistema integrado de aprendizaje virtual, es decir, maneja un proceso de transformación a través de alianzas tipo academia-empresa-estado, estrategia para promover la innovación y expandir su oferta académica en temas como Cuarta Revolución Industrial (4RI), Identidad digital, habilidades transversales, acceso e inclusión.",
-    "ofrece": "EDUCACION SUPERIOR ",
-    "requisitos": NaN,
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "VIRTUAL",
-    "dirección": "Transversal 73 # 296. Sector El Volador",
-    "teléfono": "(604) 4447947 "
-  },
-  {
-    "nombre": "ADRA COLOMBIA",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Proyecto sasven “salud y seguridad alimentaria para venezolanos en Colombia”",
-    "requisitos": "SIN DATO",
-    "población": "General",
-    "contacto": "ALEJANDRO ",
-    "dirección": "Calle 1 A No. 66-30 Belén",
-    "teléfono": 3148674558
-  },
-  {
-    "nombre": "Centros Integrales de Familia",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Acercan oportunidades en: acompañamiento psicosocial,  documentos de identidad y libreta militar,  ingresos y oportunidades laborales,  educación y capacitación, salud,  vivienda y servicios públicos,  acceso a la justicia y participación ciudadana,  dinámica familiar,  bancarización y ahorro",
-    "requisitos": NaN,
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "SIN DATO",
-    "dirección": "Cra. 48 #63 33, La Candelaria",
-    "teléfono": "313 4663221"
-  },
-  {
-    "nombre": "JAC San Antonio de prado",
-    "área": "Cultura",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 80,
-    "programa": "Junta Administradora Local San Antonio de Prado",
-    "ofrece": "Promover la participación ciudadana",
-    "requisitos": "Pertenecer al Corregimiento",
-    "población": "General",
-    "contacto": "Lina Marcel Restrepo",
-    "dirección": "Carrera 79 calle 40 Sur 40, Medellín",
-    "teléfono": "(604) 286 5173)"
-  },
-  {
-    "nombre": "JAC San Antonio de prado",
-    "área": "Participación Ciudadana",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 80,
-    "programa": "Junta Administradora Local San Antonio de Prado",
-    "ofrece": "Promover la participación ciudadana",
-    "requisitos": "Pertenecer al Corregimiento",
-    "población": "General",
-    "contacto": "Luisa Maria Sepúlveda",
-    "dirección": "Carrera 79 calle 40 Sur 40, Medellín",
-    "teléfono": "(604) 286 5173)"
-  },
-  {
-    "nombre": "Unidad Familia Medellín",
-    "área": "Asesoría Psicosocial",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 80,
-    "programa": "Centro Integral de Familia",
-    "ofrece": "Atención psicosocial,Articulación,Acercamiento de oferta.",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Carolina Cardona",
-    "dirección": "No especificado",
-    "teléfono": 3128505774
-  },
-  {
-    "nombre": "Secretaría de Juventud",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 16,
-    "programa": "Proyecto franja junio a diciembre anual",
-    "ofrece": "Parches, laboratorios creativos por nodos",
-    "requisitos": NaN,
-    "población": "Juventud (18-28 años)",
-    "contacto": "Melisa Hoyos Upegui",
-    "dirección": "No especificado",
-    "teléfono": 3122503648
-  },
-  {
-    "nombre": "Opción Legal",
-    "área": "Identificación, Registro Y Servicios Migratorios",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": 3,
-    "programa": NaN,
-    "ofrece": "Voluntariado C 4",
-    "requisitos": "NNA Escolarizados ",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Jasmina Mendez ",
-    "dirección": "No especificado",
-    "teléfono": 3005275816
-  },
-  {
-    "nombre": "World Vision",
-    "área": "Asistencia Humanitaria",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": 3,
-    "programa": NaN,
-    "ofrece": "Focalización de familias vulnerables para ayudas humanitarias ",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Juan Manuel",
-    "dirección": "No especificado",
-    "teléfono": 3045777850
-  },
-  {
-    "nombre": "Fundación Juanfe",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Apoyan a madres con un solo hijo para que tengan la posibilidad de estudiar una carrera técnica y de ingresar al mundo laboral, apoyando el ingreso de su hijo a un jardín infantil de Buen comienzo en el mismo horario en que están estudiando o trabajando.",
-    "requisitos": "Madres con un solo parto, y edades entre 16 y 20 años, con documento regular y bachillerato reconocido en Colombia o con nivel de formación básica ya concluida",
-    "población": "Mujeres",
-    "contacto": NaN,
-    "dirección": "Cra. 42 #48 - 35, La Candelaria, Medellín",
-    "teléfono": 3003675023
-  },
-  {
-    "nombre": "Caribe Afirmativo",
-    "área": "Violencia De Género (Vbg)",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "proyectos para la inclusión y acceso a derechos de población LGBTQ+, brindado atención jurídica frente a VBG, barreras en acceso a derechos o discriminación; y consolidando redes y grupos de apoyo para población diversa.",
-    "requisitos": "población LGBTQ+",
-    "población": "Población LGBTQ+",
-    "contacto": NaN,
-    "dirección": "No especificado",
-    "teléfono": 3017389014
-  },
-  {
-    "nombre": "Secretaría de las mujeres distrito de Medellín",
-    "área": "Violencia De Género (Vbg)",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": NaN,
-    "requisitos": "Talleres sobre educación sexual y reproductiva.\nIVE\nKits de salud sexual.",
-    "población": "Mujeres",
-    "contacto": "Población en general",
-    "dirección": "No especificado",
-    "teléfono": 3137332729
-  },
-  {
-    "nombre": "Secretaría de las mujeres de Medellín y Colectivo Abrelazos",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 16,
-    "programa": NaN,
-    "ofrece": NaN,
-    "requisitos": "Documento de identidad. Las capacitaciones abordan no regulares ",
-    "población": "Mujeres",
-    "contacto": "Flor Maria Vargas",
-    "dirección": "No especificado",
-    "teléfono": 3128923577
-  },
-  {
-    "nombre": "Alcaldía de Medellín",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 16,
-    "programa": NaN,
-    "ofrece": "Regular y no regular. No regular: capacitaciones, salud mental, anticoncpeción.",
-    "requisitos": "Todos",
-    "población": "General",
-    "contacto": "Yulitza Gonzalez - Martha Marín",
-    "dirección": "No especificado",
-    "teléfono": "3003535453 - 3128726160"
-  },
-  {
-    "nombre": "Organización base comunitaria",
-    "área": "Violencia De Género (Vbg)",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": 16,
-    "programa": "Colectivo Mujeres de Belén",
-    "ofrece": "Desarrollan sus acciones dependiendo del proyecto que estén ejecutando.",
-    "requisitos": "Capacitación, sensibilización.",
-    "población": "Mujeres",
-    "contacto": "Luz Miriam (no se cuenta con el apellido)",
-    "dirección": "No especificado",
-    "teléfono": NaN
-  },
-  {
-    "nombre": "Junta administradora local",
-    "área": "Gobierno Local",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 16,
-    "programa": NaN,
-    "ofrece": "Posibilidad de acceder a espaciosen parque de Belén",
-    "requisitos": "Ninguno.",
-    "población": "General",
-    "contacto": "Daniel",
-    "dirección": "No especificado",
-    "teléfono": NaN
-  },
-  {
-    "nombre": "IE Horacio Muñoz",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 16,
-    "programa": NaN,
-    "ofrece": "Educación basica y proceso de aceleración",
-    "requisitos": "Ninguno.",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": NaN,
-    "dirección": "No especificado",
-    "teléfono": NaN
-  },
-  {
-    "nombre": "Colegio Alcaldia de Medellín",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 16,
-    "programa": NaN,
-    "ofrece": "Educación basica y proceso de aceleración",
-    "requisitos": "Ninguno.",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Alexander",
-    "dirección": "No especificado",
-    "teléfono": 3108714875
-  },
-  {
-    "nombre": "Colegio capilla del Rosario",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 16,
-    "programa": NaN,
-    "ofrece": "Educación básica y proceso de aceleración",
-    "requisitos": "Ninguno.",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Profesora Nancy",
-    "dirección": "Cl. 6 Sur #79195, El Rincon, Medellín",
-    "teléfono": "313 7475918"
-  },
-  {
-    "nombre": "La otra cara de Zafra",
-    "área": "Cultura",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": 16,
-    "programa": NaN,
-    "ofrece": "La otra cara de Zafra",
-    "requisitos": "Realiza acciones de integración y apoya procesos con la secretaría de no violencia en el barrio.",
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Jonathan",
-    "dirección": "No especificado",
-    "teléfono": "300 5950809"
-  },
-  {
-    "nombre": "Infopalante",
-    "área": "Comunicación",
-    "incidencia": "Nacional",
-    "sector": "Cooperación Internacional",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Infopalante",
-    "requisitos": "A traves de el canal de WhatsApp se difunde información de interes para",
-    "población": "General",
-    "contacto": "canal de Whatsapp",
-    "dirección": "No especificado",
-    "teléfono": "https://whatsapp.com/channel/0029Va3vtVSCHDyc5QKlTQ0C"
-  },
-  {
-    "nombre": "Colectiva Justicia Mujer",
-    "área": "Acceso A Justicia Y Asesoría Jurídica",
-    "incidencia": "Distrital",
-    "sector": "Ong",
-    "comuna": "Todas",
-    "programa": NaN,
-    "ofrece": "Derechos Sin Fronteras",
-    "requisitos": "Atención psicojurídica",
-    "población": "General",
-    "contacto": "Manuela Arango",
-    "dirección": "No especificado",
-    "teléfono": "(604) 4798898 /314 8550009"
-  },
-  {
-    "nombre": "Casa de justicia de Robledo",
-    "área": "Acceso A Justicia Y Asesoría Jurídica",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 7,
-    "programa": NaN,
-    "ofrece": "Comisaría de familia ",
-    "requisitos": "Atención jurídica",
-    "población": "General",
-    "contacto": NaN,
-    "dirección": "No especificado",
-    "teléfono": NaN
-  },
-  {
-    "nombre": "Junta de Acción Comunal Olaya Herrera",
-    "área": "Participación Ciudadana",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 7,
-    "programa": "Integración social y comunitaria",
-    "ofrece": "Apoyo y acompañamiento a diferentes actividades sociales y comunitarias",
-    "requisitos": "Residir en la Comuna",
-    "población": "General",
-    "contacto": "Jorge ",
-    "dirección": "No especificado",
-    "teléfono": 3117363601
-  },
-  {
-    "nombre": "Junta Administradora Local",
-    "área": "Participación Ciudadana",
-    "incidencia": "Distrital",
-    "sector": "Base Social",
-    "comuna": 7,
-    "programa": "Integración social y comunitaria",
-    "ofrece": "Apoyo y acompañamiento a diferentes actividades sociales y comunitarias ",
-    "requisitos": "Residir en la Comuna",
-    "población": "General",
-    "contacto": "Maria Betty Herrera Peña",
-    "dirección": "No especificado",
-    "teléfono": 3015160485
-  },
-  {
-    "nombre": "Núcleo educativo 922",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 7,
-    "programa": "Núcleo educativo 922",
-    "ofrece": "Acceso a cupos de ed pública",
-    "requisitos": "Residir en la Comuna",
-    "población": "General",
-    "contacto": "Carmen Lucía",
-    "dirección": "No especificado",
-    "teléfono": 3008925363
-  },
-  {
-    "nombre": "Núcleo educativo ",
-    "área": "Educación",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 7,
-    "programa": "Núcleo educativo ",
-    "ofrece": "Acceso a cupos de ed pública",
-    "requisitos": "Residir en la Comuna",
-    "población": "General",
-    "contacto": "María Eugenia",
-    "dirección": "No especificado",
-    "teléfono": 3052947296
-  },
-  {
-    "nombre": "ICBF",
-    "área": "Educación",
-    "incidencia": "Nacional",
-    "sector": "Público",
-    "comuna": 7,
-    "programa": "Hogares Comunitarios de Bienestar",
-    "ofrece": "Cuidado de niñas/os de primera infancia",
-    "requisitos": "Residir en la Comuna",
-    "población": "General",
-    "contacto": "Sandra Pino",
-    "dirección": "No especificado",
-    "teléfono": 3154850665
-  },
-  {
-    "nombre": "Medellín te quiere saludable",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 3,
-    "programa": "Medellín te quiere saludable",
-    "ofrece": "Servicios de salud",
-    "requisitos": "Ninguno.",
-    "población": "General",
-    "contacto": "Ana María Sanchez Quintero",
-    "dirección": "No especificado",
-    "teléfono": 3004778734
-  },
-  {
-    "nombre": "Medellín te quiere saludable",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 4,
-    "programa": "Medellín te quiere saludable",
-    "ofrece": "Servicios de salud",
-    "requisitos": "Ninguno.",
-    "población": "General",
-    "contacto": "Maria Piedad Roldan",
-    "dirección": "No especificado",
-    "teléfono": 3105983987
-  },
-  {
-    "nombre": "Medellín te quiere saludable",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 7,
-    "programa": "Medellín te quiere saludable",
-    "ofrece": "Servicios de salud",
-    "requisitos": "Ninguno.",
-    "población": "General",
-    "contacto": "Alexander Bacca Muñoz",
-    "dirección": "No especificado",
-    "teléfono": 3193665263
-  },
-  {
-    "nombre": "Medellín te quiere saludable",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 8,
-    "programa": "Medellín te quiere saludable",
-    "ofrece": "Servicios de salud",
-    "requisitos": "Ninguno.",
-    "población": "General",
-    "contacto": "María del Pilar Sanchez Guillen",
-    "dirección": "No especificado",
-    "teléfono": 3127727126
-  },
-  {
-    "nombre": "Medellín te quiere saludable",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 13,
-    "programa": "Medellín te quiere saludable",
-    "ofrece": "Servicios de salud",
-    "requisitos": "Ninguno.",
-    "población": "General",
-    "contacto": "Juan David Peláez Muñoz",
-    "dirección": "No especificado",
-    "teléfono": 3006575582
-  },
-  {
-    "nombre": "Medellín te quiere saludable",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 16,
-    "programa": "Medellín te quiere saludable",
-    "ofrece": "Servicios de salud",
-    "requisitos": "Ninguno.",
-    "población": "General",
-    "contacto": "Martha Lilian Marin Restrepo",
-    "dirección": "No especificado",
-    "teléfono": 3128726160
-  },
-  {
-    "nombre": "Medellín te quiere saludable",
-    "área": "Salud",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": 80,
-    "programa": "Medellín te quiere saludable",
-    "ofrece": "Servicios de salud",
-    "requisitos": "Ninguno.",
-    "población": "General",
-    "contacto": "Cristian Atehortua Castaño",
-    "dirección": "No especificado",
-    "teléfono": 3194658028
-  },
-  {
-    "nombre": "ACNUR",
-    "área": "Medios De Vida",
-    "incidencia": "Nacional",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Medios de vida",
-    "ofrece": "Medios de vida",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Yuliana Vargas Gasca",
-    "dirección": "No especificado",
-    "teléfono": 3205882630
-  },
-  {
-    "nombre": "AID FOR AIDS",
-    "área": "Salud",
-    "incidencia": "Nacional",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Salud, atención VIH",
-    "ofrece": "Salud, atención VIH",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Ana Betancur",
-    "dirección": "No especificado",
-    "teléfono": 3143032110
-  },
-  {
-    "nombre": "Fundación Unimédicos",
-    "área": "Salud",
-    "incidencia": "Nacional",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Interrupción Voluntaria del embarazo",
-    "ofrece": "Salud sexual y reproductiva",
-    "requisitos": NaN,
-    "población": "General",
-    "contacto": "Heifer Rodríguez",
-    "dirección": "No especificado",
-    "teléfono": 3185232736
-  },
-  {
-    "nombre": "OIM",
-    "área": "Gestión Migración",
-    "incidencia": "Distrital",
-    "sector": "Público",
-    "comuna": "Todas",
-    "programa": "Luchar contra la xenofobia",
-    "ofrece": "Educación, asistencia humanitaria",
-    "requisitos": NaN,
-    "población": "Personas refugiadas, migrantes, comunidad de acogida y población retornada",
-    "contacto": "Alba María Orozco Rosado",
-    "dirección": "No especificado",
-    "teléfono": 3204868520
-  }
-];
+      .filter-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
 
-    const removeAccents = (str) => {
-      return str.normalize("NFD").replace(/\p{Diacritic}/gu, "");
-    };
+      .filter-options select {
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: 45%;
+        max-width: 300px;
+      }
 
-    const safeString = (value) => {
-      let str = '';
-      if (typeof value === 'string') str = value.toLowerCase();
-      else if (typeof value === 'number') str = value.toString().toLowerCase();
+      .actor-card {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
 
-      str = removeAccents(str);
-      return str;
-    };
+      footer {
+        text-align: center;
+        padding: 10px;
+        background-color: #005aa4;
+        color: white;
+        margin-top: 20px;
+      }
 
-    const renderActors = (filteredActors) => {
-      const actorsList = document.getElementById('actors-list');
-      actorsList.innerHTML = '';
-      filteredActors.forEach(actor => {
-        const card = document.createElement('div');
-        card.classList.add('actor-card');
-        card.innerHTML = `
-                    <div class="actor-header">${actor.nombre || ''}</div>
+      .actor-header {
+        font-size: 18px;
+        font-weight: bold;
+        color: #0078d7;
+      }
+
+      .actor-details {
+        margin-top: 10px;
+      }
+
+      .actor-details p {
+        margin: 5px 0;
+      }
+
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        header img {
+          margin-right: 0;
+          margin-bottom: 10px;
+        }
+
+        .filter-options select {
+          width: 90%;
+          max-width: none;
+        }
+
+        .search-bar input {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        header h1 {
+          font-size: 16px;
+        }
+
+        header a {
+          font-size: 14px;
+          padding: 6px 10px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <img
+        src="https://cah.org.co/wp-content/uploads/2023/12/Logo-CAH-03.png"
+        alt="Logo CAH"
+      />
+      <h1>Mapa de Actores y Servicios - Modelo de Graduación 2024</h1>
+      <a href="index.html">Inicio</a>
+    </header>
+    <main>
+      <div class="search-bar">
+        <input
+          type="text"
+          id="search"
+          placeholder="Buscar por palabra clave..."
+        />
+      </div>
+      <div class="filter-options">
+        <select id="area-filter">
+          <option value="">Filtrar por Área</option>
+          <option value="Acceso A Justicia Y Asesoría Jurídica">
+            Acceso A Justicia Y Asesoría Jurídica
+          </option>
+          <option value="Adulto Mayor">Adulto Mayor</option>
+          <option value="Asesoría Psicosocial">Asesoría Psicosocial</option>
+          <option value="Asistencia Humanitaria">Asistencia Humanitaria</option>
+          <option value="Atención En Emergencias">
+            Atención En Emergencias
+          </option>
+          <option value="Comunicación">Comunicación</option>
+          <option value="Construcción De Paz">Construcción De Paz</option>
+          <option value="Cultura">Cultura</option>
+          <option value="Educación">Educación</option>
+          <option value="Familia">Familia</option>
+          <option value="Gestión Migración">Gestión Migración</option>
+          <option value="Gobierno Local">Gobierno Local</option>
+          <option value="Identificación, Registro Y Servicios Migratorios">
+            Identificación, Registro Y Servicios Migratorios
+          </option>
+          <option value="Juventud">Juventud</option>
+          <option value="Lgbtiq+">Lgbtiq+</option>
+          <option value="Medellín Te Quiere Saludable">
+            Medellín Te Quiere Saludable
+          </option>
+          <option value="Medios De Vida">Medios De Vida</option>
+          <option value="Mujeres">Mujeres</option>
+          <option value="Niñez">Niñez</option>
+          <option value="Participación Ciudadana">
+            Participación Ciudadana
+          </option>
+          <option value="Programas Y Proyectos Con Enfoque Diferencial">
+            Programas Y Proyectos Con Enfoque Diferencial
+          </option>
+          <option value="Proyecto De Vida">Proyecto De Vida</option>
+          <option value="Recreación Y Deporte">Recreación Y Deporte</option>
+          <option value="Salud">Salud</option>
+          <option value="Seguridad Y Convivencia">
+            Seguridad Y Convivencia
+          </option>
+          <option value="Todas">Todas</option>
+          <option value="Violencia De Género (Vbg)">
+            Violencia De Género (Vbg)
+          </option>
+        </select>
+        <select id="incidencia-filter">
+          <option value="">Filtrar por Incidencia</option>
+          <option value="Distrital">Distrital</option>
+          <option value="Internacional">Internacional</option>
+          <option value="Nacional">Nacional</option>
+          <option value="Área Metropolitana">Área Metropolitana</option>
+        </select>
+        <select id="sector-filter">
+          <option value="">Filtrar por Base o Sector</option>
+          <option value="Base Social">Base Social</option>
+          <option value="Cooperación Internacional">
+            Cooperación Internacional
+          </option>
+          <option value="Ong">Ong</option>
+          <option value="Privado">Privado</option>
+          <option value="Público">Público</option>
+          <option value="Social">Social</option>
+        </select>
+        <select id="comuna-filter">
+          <option value="">Filtrar por Comuna</option>
+          <option value="Todas">Todas</option>
+          <option value="1">1</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="16">16</option>
+          <option value="80">80</option>
+        </select>
+      </div>
+
+      <div id="actors-list">
+        <!-- Actor cards dynamically inserted here -->
+      </div>
+    </main>
+
+    <script>
+      const actors = [
+        {
+          nombre: "Profamilia",
+          area: "Violencia De Género (Vbg)",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Ruta de acompañamiento en violencia basadas en genero",
+          ofrece:
+            "1. Interrupción voluntaria del embarazo. \n2. Prevención y atención en situación de riesgo\n3. Derechos sexuales y reproductivos.",
+          requisitos:
+            "1. Mayoria de edad\n2. Sujetarse bajo los criterios de la corte constitucional.",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Profamilia",
+          direccion: "No especificado",
+          telefono: "3009124560 - (604) 2836688",
+        },
+        {
+          nombre: "Integrate",
+          area: "Todas",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Integrate Medellín",
+          ofrece: "Integración local",
+          requisitos: "Ninguno",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Integrate",
+          direccion: "Cl. 59 #45-53, La Candelaria, Medellín",
+          telefono: NaN,
+        },
+        {
+          nombre: "Saviasalud",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Urgencias Odontologicas",
+          ofrece:
+            "Atención de urgencias de odontología, para migrates, no asegurados.",
+          requisitos: "1. Menores de 18 años  \n2. Mujeres gestantes.",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Metrosalud",
+          direccion: "No especificado",
+          telefono: "(604) 448 17 47",
+        },
+        {
+          nombre: "Medellín te quiere saludable",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa:
+            "1. Servicio de enfermeria.\n2. Orientación en salud sexual y reproductiva.\n3. Servicios de vacunación.\n4. Servicios Nutricionales.\n5. Servicios de salud Mental.\n6. Servicios de salud Bucal.\n7. Servicios Ambientales.",
+          ofrece:
+            "1. Visita Domiciliaria para identificación en riesgos de salud. \n2. Pruebas de detección de ETS.\n3. Vacunación a poblacion en condición de vulnerabilidad.\n4. Información en seguridad alimentarias y nutricional.\n5. Entrega de Kits para el cuidado de la salud Bucal. \n6. Eduación en formación sobre temas ambientales.",
+          requisitos: "Mayoria de edad",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: NaN,
+          direccion: "Julián Escobar",
+          telefono: "3215092381 - 3006044444 - (604) 44444448 - (604) 444 4144",
+        },
+        {
+          nombre: "Fundación Juanfe",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: "Todas",
+          programa: "Enfoque 360",
+          ofrece:
+            "Apoyan a madres con un solo hijo para que tengan la posibilidad de estudiar una carrera técnica y de ingresar al mundo laboral, apoyando el ingreso de su hijo a un jardín infantil de Buen comienzo en el mismo horario en que estudiano trabajan.",
+          requisitos:
+            "Madres con un solo parto, y edades entre 16 y 20 años, con documento regular y bachillerato reconocido en Colombia o con nivel de formación básica ya concluida",
+          poblacion: "Mujeres",
+          contacto: "Susana Echeverri Ángel",
+          direccion: "Cra. 42 #48 - 35, La Candelaria, Medellín",
+          telefono: "3003675023 - (604) 448 08823",
+        },
+        {
+          nombre: "Caribe Afirmativo",
+          area: "Violencia De Género (Vbg)",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: "Todas",
+          programa: "Grupos de apoyo y orientación psicosocial",
+          ofrece:
+            "proyectos para la inclusión y acceso a derechos de poblacion LGBTQ+, brindado atención jurídica frente a VBG, barreras en acceso a derechos o discriminación; y consolidando redes y grupos de apoyo para poblacion diversa.",
+          requisitos: "poblacion LGBTQ+",
+          poblacion: "poblacion LGBTQ+",
+          contacto: "Juan Felipe",
+          direccion: "Cra. 41 #57-21, Medellín, La Candelaria",
+          telefono: 3017389014,
+        },
+        {
+          nombre: "Buen comienzo",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Modalidad Entorno Familiar",
+          ofrece: "Acompañamiento a primera infancia y familias",
+          requisitos: NaN,
+          poblacion: "Mujeres",
+          contacto: "Víctor Restrepo",
+          direccion: "No especificado",
+          telefono: "3136355528 - 604 44 44 144",
+        },
+        {
+          nombre: "INDER",
+          area: "Recreación Y Deporte",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Adultos Mayores ",
+          ofrece:
+            "Espacios de participación ciudadana, salud física y mental, recreacion y deporte.",
+          requisitos:
+            "Personas mayores de 50 años, inscribirse con el intructor más cercano, con copia documento de identidad",
+          poblacion: "Adultos mayores",
+          contacto: "Reinel Rodriguez",
+          direccion: "Calle 47 D # 75-276, Velódromo",
+          telefono: "3146536244 - 604 369 90 00 - 604 44 44 144",
+        },
+        {
+          nombre: "INDER",
+          area: "Recreación Y Deporte",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Deportes Sin Límites",
+          ofrece:
+            "Subsidos cada dos meses para algunas personas con discapacidad. Promocion del derecho a la actividad física, el deporte y la recreación de las personas con discapacidad",
+          requisitos:
+            " Acercarse al instructor del punto de atención más cercano. Presentar copia documento de identidad y diagnóstico de la discapacidad para inscribirse. (Para acceder al subsidio deberá asistir 3 veces por semana durante 1 hora a la actividad física)",
+          poblacion: "Personas con discapacidad",
+          contacto: "Reinel Rodriguez",
+          direccion: "Calle 47 D # 75-276, Velódromo",
+          telefono: "3146536244 - 604 369 90 00 - 604 44 44 144",
+        },
+        {
+          nombre: "Sistema de Bibliotecas Públicas de Medellín",
+          area: "Cultura",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Sistema de Bibliotecas Públicas de Medellín",
+          ofrece:
+            "Libre acceso a la información, a la lectura, a la escritura, al conocimiento, al pensamiento y al disfrute de la cultura",
+          requisitos:
+            "Ninguno (para algunos espacios formativos, previa inscripción)",
+          poblacion: "General",
+          contacto: "Sara Rueda",
+          direccion: "No especificado",
+          telefono: 3164111395,
+        },
+        {
+          nombre: "EBAS de Ministerio de Salud",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "EBAS de Ministerio de Salud",
+          ofrece: "Atención en salud en territorio",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "Beatriz Rico",
+          direccion: "No especificado",
+          telefono: 3156982377,
+        },
+        {
+          nombre: "Buen Comienzo - ICBF",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Equipo psicosocial",
+          ofrece: "Acompañamiento a primera infancia y familias",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "Diana Flores ",
+          direccion: "No especificado",
+          telefono: 3116059736,
+        },
+        {
+          nombre: "Monseñor Valerio Jimenez",
+          area: "Atención En Emergencias",
+          incidencia: "Nacional",
+          sector: "Privado",
+          comuna: "Todas",
+          programa: "Monseñor Valerio Jimenez",
+          ofrece:
+            "Prevención de la habitancia en calle desde el apoyo psicosocial, comedor comunitario y acceso a otros servicios",
+          requisitos: "Asistir en los horarios establecidos",
+          poblacion: "General",
+          contacto: "Bibiana",
+          direccion: "Cl. 57 #49-77, La Candelaria, Medellín",
+          telefono: "3147707671 - (604) 2747411",
+        },
+        {
+          nombre: "Caribe Afirmativo",
+          area: "Lgbtiq+",
+          incidencia: "Nacional",
+          sector: "Privado",
+          comuna: "Todas",
+          programa: "Caribe Afirmativo",
+          ofrece:
+            "Nuestro propósito es incidir en la construcción y posicionamiento de agendas de diversidad sexual y de género en el Caribe, que permitan el reconocimiento de los derechos y el acceso a la justicia de las personas LGBTI en un escenario de posconflicto.",
+          requisitos:
+            "Diversidades sexuales, expresiones e identidades de género diversas",
+          poblacion: "poblacion LGBTQ+",
+          contacto: "Sara Lopez Mejía",
+          direccion: "No especificado",
+          telefono: 3107133026,
+        },
+        {
+          nombre: "Parque Explora",
+          area: "Cultura",
+          incidencia: "Distrital",
+          sector: "Privado",
+          comuna: "Todas",
+          programa: "Accesibilidad",
+          ofrece:
+            "Portafolio de servicios de naturaleza educativa para transformar la escuela y hacer de las ciencias y las tecnologías universos cercanos a todos. Accesibilidad, formación",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "María Antonia",
+          direccion: "Cra. 53 #7375, Aranjuez, Medellín",
+          telefono: "3147714114 - (604) 5168300",
+        },
+        {
+          nombre: "Secretaría de Juventud",
+          area: "Juventud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Gestores/as territoriales",
+          ofrece:
+            "Salud pública juvenil, formación, promoción y acompañamiento en la participación juvenil",
+          requisitos: "Estar en el rango de edad (18-28 años)",
+          poblacion: "Juventud (18-28 años)",
+          contacto: "Camilo Pineda",
+          direccion: "Calle 44 N 52 – 165, Centro Administrativo la Alpujarra",
+          telefono: "3015993162 - (604) 444 4144",
+        },
+        {
+          nombre: "Escuchaderos",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Escuchaderos",
+          ofrece:
+            "Atención psicológica en territorio en las comunas del Distrito de Medellín",
+          requisitos: "Ninguna",
+          poblacion: "General",
+          contacto: "Carlos Peña",
+          direccion: "Calle 44 N 52 – 165, Centro Administrativo la Alpujarra",
+          telefono: "3168729979 - (604) 444 4144",
+        },
+        {
+          nombre: "Corporación AVE Colibrí",
+          area: "Familia",
+          incidencia: "Distrital",
+          sector: "Privado",
+          comuna: "Todas",
+          programa: "Alimentación, Vivienda y Educación",
+          ofrece:
+            "Formación integral de las familias (Pilares: Alimentación, Vivienda, Educación). Subsidios alimenticios, mejoras de vivienda.",
+          requisitos:
+            "Ser parte del barrio Santo Domingo, comuna 1; Lider de Hogar( Madre o padre cabeza de familia); Hijos en edad escolar (preferiblemente 5 - 12 años); Ningun integrante de la familia debe contar con un emplo formal; Presentar dificultades físicas en su vivienda. ",
+          poblacion: "Familias",
+          contacto: "Natalia Ramírez",
+          direccion: "No especificado",
+          telefono: 3046768741,
+        },
+        {
+          nombre: "Secretaría de las Mujeres ",
+          area: "Mujeres",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Salud Menstrual",
+          ofrece: "Espacios formativos",
+          requisitos:
+            "contribuir a la igualdad de derechos y oportunidades entre mujeres y hombres y aportar a la disminución de prácticas discriminatorias que atenten contra el desarrollo político, social, económico y cultural de las mujeres del Municipio de Medellín, a través de la implementación de la Política Pública para las Mujeres Urbanas y Rurales de la ciudad - Acuerdo 22 de 2003.",
+          poblacion: "Mujeres",
+          contacto: "Diana Marín. Y Anderson Zamora ",
+          direccion: "Calle 44 N 52 – 165, Centro Administrativo la Alpujarra",
+          telefono: "3108163253 - 3114453812 - (604) 444 4144",
+        },
+        {
+          nombre: "Secretaría de desarrollo económico",
+          area: "Medios De Vida",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Centros de Desarrollo Empresarial Zonal (CEDEZO)",
+          ofrece:
+            "La Secretaría de Desarrollo Económico es una dependencia del nivel central que tendrá como responsabilidad fortalecer la productividad, la competitividad y la sostenibilidad mediante mecanismos de desarrollo empresarial, asociatividad, intermediación laboral, alianzas sociales - público - privadas, internacionalización e innovación, con el fin de favorecer el desarrollo económico de la ciudad y el mejoramiento de la calidad de vida de sus habitantes.",
+          requisitos: "Ninguna",
+          poblacion: "General",
+          contacto: "Juan Zea",
+          direccion: "Calle 44 N 52 – 165, Centro Administrativo la Alpujarra",
+          telefono: "3167669089 - 3114453812 - (604) 444 4144",
+        },
+        {
+          nombre: "Unidad de Niñez",
+          area: "Niñez",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Unidad de Niñez",
+          ofrece:
+            "LA MAGIA DE JUGAR ES SANAR - MEDELLÍN CUIDA SUS NIÑAS, NIÑOS Y ADOLESCENTES - CENTRO DE DIAGNÓSTICO Y DERIVACIÓN -",
+          requisitos: NaN,
+          poblacion: "Niñez",
+          contacto: "Lina Marin",
+          direccion: "Cra. 70 #80-6, Cordoba, Medellín",
+          telefono: "3052448830 - 3114453812 - (604) 385 9250 - (604) 444 4144",
+        },
+        {
+          nombre: "Unidad de Familia - CIF - Escuela para la Inclusión",
+          area: "Familia",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Unidad de Familia - CIF - Escuela para la Inclusión",
+          ofrece:
+            "Caracterización de la poblacion, acercamiento de oferta dependiendo de las necesidades identificadas, apoyo psicosocial.",
+          requisitos: NaN,
+          poblacion: "Familias",
+          contacto: "Carolina Cardona - Erika Coronel (Unidad de Familia)",
+          direccion: "No especificado",
+          telefono: "3128505774- 3187124509",
+        },
+        {
+          nombre: "Secretaría de Participación Ciudadana",
+          area: "Participación Ciudadana",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Centros de Desarrollo Social",
+          ofrece:
+            "Los Centros de Desarrollo Social de Medellín son espacios para la participación ciudadana donde se promueve la convivencia, se ofrecen programas que benefician a todos los habitantes de las comunas y corregimientos de la ciudad de Medellín, se motiva la integración en torno a las organizaciones sociales, y al encuentro y el disfrute de nuestros escenarios de ciudad. Los CDS tienen como objeto social la promoción del encuentro y brindan herramientas para que los ciudadanos participen en la gestión del desarrollo local, se vinculen a la toma de decisiones para su comunidad, y aporten a la sostenibilidad de los procesos que benefician a todos los habitantes de Medellín.",
+          requisitos:
+            "Depende del espacio o actividad. En algunos casos pertenecer a Organizaciones Sociales del territorio. En general, los CDS operan como un espacio de participación ciudadano con amplia oferta para la comunidad ",
+          poblacion: "General",
+          contacto: "Daniel",
+          direccion: "Cl 44 #52 - 165, La Candelaria, Medellín",
+          telefono: 3113073267,
+        },
+        {
+          nombre: "Casas de Justicia",
+          area: "Acceso A Justicia Y Asesoría Jurídica",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Casas de Justicia",
+          ofrece:
+            " Centros de orientación, referencia y prestación de servicios de solución de conflictos, mediante mecanismos de justicia formal y no formal. Servicios: asesorías jurídicas, atención psicológica, solución de conflictos de convivencia ciudadana, restablecimiento de los derechos de los miembros de la familia por situaciones de violencia intrafamiliar, promoción de los derechos humanos",
+          requisitos: "Ninguna",
+          poblacion: "General",
+          contacto: "Wadneth Lemus - Yaira Guzmán - ",
+          direccion: "No especificado",
+          telefono: "3218767327 - 3206149946",
+        },
+        {
+          nombre: "Secretaría de Participación Ciudadana",
+          area: "Participación Ciudadana",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Escuelas de participación ciudadana",
+          ofrece:
+            "Se trata de una estrategia  de la Secretaría de Participación Ciudadana, con la que podremos aprender juntos, construir, desarrollar capacidades para los nuevos liderazgos, y sobre todo identificar las necesidades y fortalezas que tenemos en nuestros territorios, para que juntos transformemos la Medellín Futuro.  ",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "Daniel / Sandra ",
+          direccion: "Cl 44 #52 - 165, La Candelaria, Medellín",
+          telefono: "3113073267 / 3006565581",
+        },
+        {
+          nombre: "Consultorio Jurídico UdeA",
+          area: "Acceso A Justicia Y Asesoría Jurídica",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Consultorios Jurídicos",
+          ofrece: "Asesoría jurídica",
+          requisitos: "Ser mayores de edad",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: NaN,
+          direccion: "calle 49 Nº 42A-39",
+          telefono: "(604) 2199865-2199866-2199893",
+        },
+        {
+          nombre: "Profamilia - Jóvenes",
+          area: "Salud",
+          incidencia: "Nacional",
+          sector: "Privado",
+          comuna: "Todas",
+          programa: "Red de Jóvenes",
+          ofrece:
+            "Voluntariado juvenil para la promoción de procesos que contribuyan a otros adolescentes y jóvenes en el goce de sus Derechos Sexuales y Derechos Reproductivos.",
+          requisitos: "Estar en el rango de edad (18-28 años)",
+          poblacion: "General",
+          contacto: "Claudia",
+          direccion: "Calle 54 # 43 - 47",
+          telefono: "3128677038 - 300 9124560",
+        },
+        {
+          nombre: "Personería",
+          area: "Acceso A Justicia Y Asesoría Jurídica",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Personería ",
+          ofrece:
+            "A la personería como ente de control y vigilancia del gobierno local le competen importantes atribuciones de defensa, protección y promoción de los derechos humanos, de salvaguarda del interés general y de la prevalencia del bien común",
+          requisitos: "Sin restricciones",
+          poblacion: "General",
+          contacto: "Sonia Peña",
+          direccion: "Cra. 53a #42 - 101",
+          telefono: "3212029479 - (604) 3849999",
+        },
+        {
+          nombre: "Secretaría de paz y Derechos Humanos",
+          area: "Construcción De Paz",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Secretaría de paz y Derechos Humanos",
+          ofrece:
+            "La Secretaría de Paz y Derechos Humanos tiene como función principal orientar y coordinar la construcción de la paz territorial en el Municipio de Medellín, mediante la definición e implementación de estrategias relacionadas con la prevención de la violencia y hechos victimizantes que afectan la vida y los entornos de los y las habitantes de la ciudad, la promoción de la justicia restaurativa y la seguridad humana integral que permita la transformación de los conflictos y la protección de la vida como valor fundamental",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "Gladys ",
+          direccion: "Cl 44 #52 - 165, La Candelaria, Medellín",
+          telefono: "3122504279 - (604) 444 4144",
+        },
+        {
+          nombre: "Museo de Antioquia",
+          area: "Cultura",
+          incidencia: "Distrital",
+          sector: "Privado",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece:
+            "Contribuyen desde el arte a la construcción de ciudadanías comprometidas con los desafíos del presente.",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "Isabela Agudelo",
+          direccion: "Cl. 52 #52-43, La Candelaria, Medellín",
+          telefono: "3013752548 - (604) 2513636",
+        },
+        {
+          nombre: "Museo Casa de la Memoria",
+          area: "Cultura",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Museo Casa de la Memoria",
+          ofrece:
+            "El Museo Casa de la Memoria se gesta desde las iniciativas y resistencias de las víctimas del conflicto armado colombiano, quienes, a través de ejercicios de construcción colectiva de memorias y de reparación simbólica, buscaron una Casa para el diálogo abierto y plural, crítico y reflexivo, que contribuyera a la superación del conflicto y las violencias en Medellín, Antioquia y el país.",
+          requisitos: "Sin restricciones",
+          poblacion: "General",
+          contacto: NaN,
+          direccion: "Parque Bicentenario, Cl. 51 #36-66",
+          telefono: "(604) 5202020",
+        },
+        {
+          nombre: "Fundación Bien Humano",
+          area: "Familia",
+          incidencia: "Distrital",
+          sector: "Privado",
+          comuna: "Todas",
+          programa: "Fundación Bien Humano",
+          ofrece:
+            "Gestión del conocimiento e incidencia política. Formación y acompañamiento",
+          requisitos: "Sin restricciones",
+          poblacion: "Familias",
+          contacto: "Ana Salgado",
+          direccion: "EDIFICIO LUCRECIO VÉLEZ, Cra. 49 #N°. 50-30 of. 701",
+          telefono: "3044198423 - (604) 45128797",
+        },
+        {
+          nombre: "Gerencia de diversidades sexuales y de genero",
+          area: "Lgbtiq+",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Gerencia de diversidades sexuales y de genero ",
+          ofrece:
+            "Su propósito es brindar asesoría, acompañamiento y orientación jurídica, así como realizar articulaciones público-privadas para la promoción, protección, restitución y garantía de los derechos de la poblacion con orientaciones sexuales e identidades de género no hegemónicas.",
+          requisitos:
+            "Diversidades sexuales, expresiones e identidades de género.",
+          poblacion: "poblacion LGBTQ+",
+          contacto: "Edgar Yepez",
+          direccion: "Cra. 48 #57 - 21, La Candelaria, Medellín",
+          telefono: "3148876722 - 43855555 ext. 8479",
+        },
+        {
+          nombre: "Proyecto Emergencias UPSE",
+          area: "Atención En Emergencias",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece: NaN,
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "Doris Manco ",
+          direccion: "No especificado",
+          telefono: 3122553496,
+        },
+        {
+          nombre: "Entornos Protectores",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Primera Infancia",
+          ofrece:
+            "Acceso a educación inicial para Buen Comienzo y Modalidad Familiar",
+          requisitos: "De 0 a 5 años",
+          poblacion: "Niñez",
+          contacto: "Astrid Restrepo",
+          direccion: "No especificado",
+          telefono: 3108456163,
+        },
+        {
+          nombre: "Secretaría de Seguridad y Convivencia",
+          area: "Seguridad Y Convivencia",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece:
+            "Planea, lidera, gestiona, articula, desarrolla, implementa y evalua todas las acciones tendientes a fortalecer la seguridad y la convivencia ciudadana, mediante la formulación e implementación de políticas y estrategias que promuevan la civilidad, el control de las indisciplinas sociales, la atención de las problemáticas familiares.",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "David Alvarez",
+          direccion: "Cl 44A #52 – 165, La Candelaria, Medellín",
+          telefono: "3206789269 - (604) 4444144",
+        },
+        {
+          nombre: "Secretaría de Participación Ciudadana",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Componente Formación",
+          ofrece:
+            "Desarrollar capacidades para los nuevos liderazgos, y sobre todo identificar las necesidades y fortalezas que tenemos en nuestros territorios,",
+          requisitos:
+            "Inscripción previa por medio de las diferentes Juntas de Acción Comunal de los barrios, las Juntas Administradoras Locales o directamente con la Secretaría de\nParticipación ciudadana en el email:\nescuelasdeparticipacionciudadana@medellin.gov.co.                                                      Niños y niñas: de 7 a 10 años de edad.\nAdolescentes: de 11 a 13 años de edad.\nJóvenes: de 14 a 17 años de edad.\nAdultos: de 18 años de edad en adelante.",
+          poblacion: "General",
+          contacto: "Sandra ",
+          direccion: "Cl 44A #52 – 165, La Candelaria, Medellín",
+          telefono: "3006565581 (604) 4444144",
+        },
+        {
+          nombre: "Estación de Policía Aranjuez",
+          area: "Seguridad Y Convivencia",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 4,
+          programa: NaN,
+          ofrece: "Seguridad",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: NaN,
+          direccion: "Cl. 71 #37-52, Manrique Oriental",
+          telefono: " 323 5065800 - 3046289308",
+        },
+        {
+          nombre: "Comisaria de Familia",
+          area: "Acceso A Justicia Y Asesoría Jurídica",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 4,
+          programa: NaN,
+          ofrece:
+            "Restablecimiento de derechos. Asesoría jurídica. Atención psicosocial. Remisiones a entidades",
+          requisitos:
+            "Ser de la comuna. Presentar alguna situación de vulneración de derechos",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Joaquin Emilio Gallo",
+          direccion: "CR 52  # 71 - 84",
+          telefono: "3002095168 - 3855555 ext 9785- 9789- 9787 - 2097",
+        },
+        {
+          nombre: "Gesco",
+          area: "Acceso A Justicia Y Asesoría Jurídica",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 4,
+          programa: "Policia comunitaria",
+          ofrece: "Acompañamiento cultural a iniciativas comunitarias",
+          requisitos: "Ser poblacion de la comunidad",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Bohorquez Diaz Wilmar",
+          direccion: "No especificado",
+          telefono: 3014455590,
+        },
+        {
+          nombre: "Casa Cultural de Moravia",
+          area: "Programas Y Proyectos Con Enfoque Diferencial",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 4,
+          programa: "Cultura y recreación. Capacitaciones. Salud.",
+          ofrece: "Acompañamiento cultural a iniciativas comunitarias",
+          requisitos: "Ser poblacion de la comunidad",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Eliana Londoño",
+          direccion: "Cl. 82a #52-25, Aranjuez, Medellín",
+          telefono: "3192271460 - (604) 42136010",
+        },
+        {
+          nombre: "Secretaría de Gobierno",
+          area: "Programas Y Proyectos Con Enfoque Diferencial",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 4,
+          programa: "Seguridad y convivencia",
+          ofrece:
+            "Relacionamiento y articulación interinstitucional en el territorio",
+          requisitos:
+            "Relacionamiento interinstitucional con profesionales para oferta de servicios",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Natalia Zapata",
+          direccion: "No especificado",
+          telefono: 3013706464,
+        },
+        {
+          nombre: "Secretaría de inclusión social",
+          area: "Atención En Emergencias",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "123 social",
+          ofrece: "Atención en emergencia",
+          requisitos: "Gestión de casos ",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Yurany Tabares",
+          direccion: "Cl 44 #52 - 165, La Candelaria, Medellín",
+          telefono: 3233750581,
+        },
+        {
+          nombre: "Secretaría seguridad y convivencia",
+          area: "Acceso A Justicia Y Asesoría Jurídica",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 4,
+          programa: "Seguridad y convivencia",
+          ofrece: "Gestionan casos de seguridad",
+          requisitos: "Ser poblacion de la comunidad",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Juan Camilo Jaramillo",
+          direccion: "No especificado",
+          telefono: 3105405786,
+        },
+        {
+          nombre: "Secretaría seguridad y convivencia",
+          area: "Acceso A Justicia Y Asesoría Jurídica",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 4,
+          programa: "Seguridad y convivencia",
+          ofrece: "Articulación interinstitucional",
+          requisitos:
+            "Relacionamiento interinstitucional con profesionales para oferta de servicios",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Eliana Villamizar",
+          direccion: "Cl 44 #52 - 165, La Candelaria, Medellín",
+          telefono: 3117068919,
+        },
+        {
+          nombre: "Medellín Te Quiere saludable",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 4,
+          programa: "Salud",
+          ofrece: "Medellín te quiere saludable",
+          requisitos: "oferta de servicios salud",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Julián Escobar",
+          direccion: "No especificado",
+          telefono: 3215092381,
+        },
+        {
+          nombre: "Medglobal",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Cooperación Internacional",
+          comuna: "Todas",
+          programa: "Programa de salud",
+          ofrece:
+            "Programa de atención en salud a poblacion migrante y de acogida",
+          requisitos: "Ser poblacion migrante y de acogida",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: NaN,
+          direccion: "No especificado",
+          telefono: NaN,
+        },
+        {
+          nombre: "USAID",
+          area: "Medios De Vida",
+          incidencia: "Distrital",
+          sector: "Cooperación Internacional",
+          comuna: 4,
+          programa: "Mujeres Equidad y Empleo",
+          ofrece:
+            "Programa de formación en empleabilidad para mujeres migrantes",
+          requisitos: NaN,
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: NaN,
+          direccion: "No especificado",
+          telefono: "571-275-2000",
+        },
+        {
+          nombre: "Fundación Capital",
+          area: "Medios De Vida",
+          incidencia: "area Metropolitana",
+          sector: "Cooperación Internacional",
+          comuna: 4,
+          programa: "Inclusión socio económica",
+          ofrece: "Talleres de salud financiera y acceso a bancarización ",
+          requisitos: "poblacion migrante y de acogida",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Diana Escobar",
+          direccion: "No especificado",
+          telefono: 3205788966,
+        },
+        {
+          nombre: "Secretaria de Paz y Derechos Humanos",
+          area: "Atención En Emergencias",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Ruta de prevención de uso y utilización de menores ",
+          ofrece:
+            "Atención inmediata en emergencia de NNA con riesgos de uso y utilización por parte de grupos armados, atención psicojuridica ",
+          requisitos: NaN,
+          poblacion: "Niños, niñas y adolescentes",
+          contacto: "Esteban Rodriguez ",
+          direccion: "No especificado",
+          telefono: "311 7200960",
+        },
+        {
+          nombre: "Corpvolven",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Privado",
+          comuna: "Todas",
+          programa: "Corpvolven",
+          ofrece:
+            "Acompañamiento a poblacion migrante en Salud, Preregistro,  ",
+          requisitos: NaN,
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Steffani Bravo",
+          direccion: "Calle 47 #43-28",
+          telefono: "3117589134/3232382518",
+        },
+        {
+          nombre: "Parroquia San Lorenzo Mártir",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Social",
+          comuna: 3,
+          programa: "Centro de escucha ",
+          ofrece: "Asesoría Psicologica ",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "Juliana Saldarriaga ",
+          direccion:
+            "sector la honda, Cl. 71 #24 b 32 int 101, Versalles II, Medellín, Manrique",
+          telefono: "321 7776286 - 301 4650890",
+        },
+        {
+          nombre: "Secretaria de Salud ",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 3,
+          programa: "Escuchaderos",
+          ofrece: "Atención Psicologica ",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: NaN,
+          direccion: "Cl 44 #52 - 165, La Candelaria",
+          telefono: "444 44 48",
+        },
+        {
+          nombre:
+            "Corporación Creando Futuro: Hogar Infantil La magia de Aprender",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Privado",
+          comuna: 3,
+          programa: "Hogar Infantil La magia de Aprender",
+          ofrece: NaN,
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "Katherine Sossa",
+          direccion: "Cl. 69 #33-12, Medellín, Manrique",
+          telefono: "313 7818966",
+        },
+        {
+          nombre: "CEDEZO",
+          area: "Medios De Vida",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece: "Medios de vida, Formación, Empleabilidad",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "John Esneider Arango",
+          direccion: "No especificado",
+          telefono: "300 7497799 - 300 7415610",
+        },
+        {
+          nombre: "Escuchadero",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 13,
+          programa: "Acompañamiento psicológico",
+          ofrece: "ninguno",
+          requisitos: "Todas",
+          poblacion: "General",
+          contacto: NaN,
+          direccion: "No especificado",
+          telefono: 3114744839,
+        },
+        {
+          nombre: "Línea Amiga",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece:
+            "emergencias en salud mental( suicidio, trastorno mental en agitación y síndrome de abstinencia) ",
+          requisitos: "ninguno",
+          poblacion: "General",
+          contacto: "no aplica",
+          direccion: "No especificado",
+          telefono: "604 444 4448 - 123 social",
+        },
+        {
+          nombre: "CAMMI Centro de atención a la poblacion migrante",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 13,
+          programa: "Planificación familiar e interrupción voluntaria",
+          ofrece: NaN,
+          requisitos: "celular o conexión a internet",
+          poblacion: "Mujeres",
+          contacto: "no aplica",
+          direccion: "No especificado",
+          telefono: 3158398902,
+        },
+        {
+          nombre: "Famicove",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: 16,
+          programa:
+            "Medicina general -pediatría-Oftalmología Valoración-ginecológica\nCrecimiento y desarrollo\nTamizaje Bucal",
+          ofrece:
+            "Medicina general -pediatría-Oftalmología Valoración-ginecológica\nCrecimiento y desarrollo\nTamizaje Bucal",
+          requisitos: "ninguno",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "no aplica",
+          direccion: "Cl. 32 #76-56 interior 3, Medellín, Belén",
+          telefono: "350 5428405\n305 3329108",
+        },
+        {
+          nombre: "Programa de familias saludables",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 14,
+          programa:
+            "Valoración y atención para niñas y niños de 0 a 5 años con riesgo de desnutrición ",
+          ofrece: NaN,
+          requisitos: "niñas y niños de 0 a 5 años",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "no aplica",
+          direccion: "No especificado",
+          telefono: "6044441101 ext 113",
+        },
+        {
+          nombre: "OIM",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Cooperación Internacional",
+          comuna: "Todas",
+          programa: "Afiliación a salud ",
+          ofrece: "Afiliación a salud ",
+          requisitos: "ninguno",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Denny OIM",
+          direccion: "No especificado",
+          telefono: 3246838282,
+        },
+        {
+          nombre: "ANAUCO",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: "Todas",
+          programa: "Afiliación a salud ",
+          ofrece: "Afiliación a salud ",
+          requisitos: "ninguno",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Monica Sequera",
+          direccion: "No especificado",
+          telefono: "3013503893 - 3134001784",
+        },
+        {
+          nombre: "Hospital La Maria",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece:
+            "Atención medica y pruebas rapidas, control prenatal, retovirales",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "Celianys",
+          direccion: "No especificado",
+          telefono: 3234821898,
+        },
+        {
+          nombre: "Humanity & Inclusion",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece: "Atención en discapacidad, Atención a migrantes",
+          requisitos: "ninguno",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "no aplica",
+          direccion: "Calle 32E # 75C - 3, Medellín",
+          telefono: "3222329039 - 3147059837 - 311 6091517",
+        },
+        {
+          nombre: "Corporación Educativa Combos",
+          area: "Proyecto De Vida",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece:
+            "Atención psicosocial para el fortalecimiento del proyecto de vida de niñas, niños y jóvenes",
+          requisitos: "niñas, niños y jóvenes",
+          poblacion: "General",
+          contacto: "no aplica",
+          direccion: "Cl. 51 #56A-35, La Candelaria, Medellín",
+          telefono: "6045011719 - 3113108357 - 3128674261",
+        },
+        {
+          nombre: "Bibliocielo",
+          area: "Cultura",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 1,
+          programa: NaN,
+          ofrece: "Integración comunitaria",
+          requisitos: "Ninguno",
+          poblacion: "General",
+          contacto: "Sergio Ledesma",
+          direccion: "Cra. 22b #96-55, Maria Cano Carambola",
+          telefono: "3014584959 - 319 7084911",
+        },
+        {
+          nombre: "Colectivo Zen-Tir La Utopia Nororiental",
+          area: "Participación Ciudadana",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 1,
+          programa: NaN,
+          ofrece: "Integración comunitaria",
+          requisitos: "Ninguno",
+          poblacion: "Niños, niñas y adolescentes",
+          contacto: "Alejandra Montoya Mesa",
+          direccion: "No especificado",
+          telefono: 3007319644,
+        },
+        {
+          nombre: "Alcaldía de Medellín",
+          area: "Programas Y Proyectos Con Enfoque Diferencial",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 1,
+          programa: NaN,
+          ofrece:
+            "Prevención de la discriminación por orientación sexual e identidad de género",
+          requisitos: "Ninguno",
+          poblacion: "poblacion LGBTQ+",
+          contacto: "Lina María Muñoz",
+          direccion: "No especificado",
+          telefono: 3045610452,
+        },
+        {
+          nombre: "JAC Carpinelo",
+          area: "Participación Ciudadana",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 1,
+          programa: NaN,
+          ofrece: "Integración comunitaria",
+          requisitos: "Residir en el Barrio Carpinelo",
+          poblacion: "General",
+          contacto: "Karen Martínez",
+          direccion: "Cl. 97 #22 b63, Maria Cano Carambola",
+          telefono: 3245764440,
+        },
+        {
+          nombre: "Voluntariado - Corporación Opción Legal",
+          area: "Asistencia Humanitaria",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece: "Fortalecimiento comunitario",
+          requisitos: "Residir en la comuna",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Claudia Cárdenas",
+          direccion: "No especificado",
+          telefono: 3146659383,
+        },
+        {
+          nombre: "Corporación Colectiva Justicia Mujer",
+          area: "Violencia De Género (Vbg)",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece: "Asistencia Humanitaria y Participación",
+          requisitos: "VBG",
+          poblacion: "Mujeres",
+          contacto: "Ángela Álvarez",
+          direccion: "Cra 79 #52A - 23, Laureles - Estadio",
+          telefono: "3006439855 - (604) 4798898",
+        },
+        {
+          nombre: "Inder",
+          area: "Cultura",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece: "Integración comunitaria",
+          requisitos: "Ninguno",
+          poblacion: "General",
+          contacto: "Daniel Bernal",
+          direccion: "Calle 47 D # 75-276, Velódromo",
+          telefono: 3173664081,
+        },
+        {
+          nombre: "Mercy Corps",
+          area: "Asistencia Humanitaria",
+          incidencia: "Nacional",
+          sector: "Ong",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece: "Medios de vida/servicios de salud/ asesoría jurídica",
+          requisitos: "Vulneración de derechos",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Brenda Aristizábal",
+          direccion: "No especificado",
+          telefono: "3154535982 - 3009109995",
+        },
+        {
+          nombre: "Grupo Adulto Mayor",
+          area: "Adulto Mayor",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 1,
+          programa: NaN,
+          ofrece: "Integración comunitaria",
+          requisitos: "Adultos mayores",
+          poblacion: "Adultos mayores",
+          contacto: "Margarita Cano",
+          direccion: "No especificado",
+          telefono: 3044915599,
+        },
+        {
+          nombre: "Buen comienzo",
+          area: "Niñez",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece: "Buen Comienzo",
+          requisitos:
+            "Brinda educación inicial y promueve el desarrollo integral, diverso, incluyente y autónomo de NN y sus familias durante sus primeros cinco años de vida",
+          poblacion: "Niñez",
+          contacto: "Andrés Agudelo",
+          direccion: "No especificado",
+          telefono: 3214438919,
+        },
+        {
+          nombre: "Corporación Convivamos",
+          area: "Participación Ciudadana",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece: "Integración comunitaria",
+          requisitos: "Ninguno",
+          poblacion: "General",
+          contacto: "Yirleni",
+          direccion: "Calle 95 A 39-24. Medellín",
+          telefono: "3043810955 - (604) 236 53 98",
+        },
+        {
+          nombre:
+            "Atención psicosocial para el fortalecimiento del proyecto de vida de niñas, niños y jóvenes",
+          area: "Cultura",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece:
+            "Atención psicosocial para el fortalecimiento del proyecto de vida de NNA",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "Juliana",
+          direccion: "No especificado",
+          telefono: 3001818193,
+        },
+        {
+          nombre: "Mis años dorados",
+          area: "Cultura",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 1,
+          programa: NaN,
+          ofrece:
+            "Actividades físicas, culturales e integración en la comunidad",
+          requisitos: "Ninguno",
+          poblacion: "Adultos mayores",
+          contacto: "Esperanza Serna",
+          direccion: "No especificado",
+          telefono: 3045556020,
+        },
+        {
+          nombre: 'Grupo de Baile "Zafiro"',
+          area: "Cultura",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 1,
+          programa: NaN,
+          ofrece: "Actividades artísticas y culturales",
+          requisitos: "Residir en la comuna",
+          poblacion: "Niños, niñas y adolescentes",
+          contacto: "Alexander",
+          direccion: "No especificado",
+          telefono: 3022543662,
+        },
+        {
+          nombre: "JAC Popular 1",
+          area: "Participación Ciudadana",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 1,
+          programa: NaN,
+          ofrece: "Integración comunitaria",
+          requisitos: "Residir en el Barrio Popular",
+          poblacion: "General",
+          contacto: "Juan estrada",
+          direccion: "Cra. 43 #108-91, La Isla, Medellín, Popular",
+          telefono: "320 4298731",
+        },
+        {
+          nombre: "JAC Popular 2 Parte Central",
+          area: "Participación Ciudadana",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 1,
+          programa: NaN,
+          ofrece: "Integración comunitaria",
+          requisitos: "Residir en el Barrio Popular",
+          poblacion: "General",
+          contacto: "Lucila Gallo",
+          direccion: "No especificado",
+          telefono: "320 7299976",
+        },
+        {
+          nombre: "JAC Nuevo Horizonte",
+          area: "Participación Ciudadana",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 1,
+          programa: NaN,
+          ofrece: "Integración comunitaria",
+          requisitos: "Residir en el Barrio ",
+          poblacion: "General",
+          contacto: "Alejandro Giraldo",
+          direccion: "Carrera 37 #108A-13",
+          telefono: "301 3940944",
+        },
+        {
+          nombre: "JAC Santo Domingo 1",
+          area: "Participación Ciudadana",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 1,
+          programa: NaN,
+          ofrece: "Integración comunitaria",
+          requisitos: "Residir en el Barrio Santo Domingo",
+          poblacion: "General",
+          contacto: "Nini Restrepo",
+          direccion: "Cl. 107b, Santo Domingo Savio I",
+          telefono: "300 5220560",
+        },
+        {
+          nombre: "ASOCOMUNAL",
+          area: "Participación Ciudadana",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 1,
+          programa: NaN,
+          ofrece: "Integración comunitaria",
+          requisitos: "Delegados por JAC",
+          poblacion: "General",
+          contacto: "Diego Herrera",
+          direccion: "Cra. 36bb #102c 08, Granizal",
+          telefono: "305 3774367",
+        },
+        {
+          nombre: "Corporación ANAUCO",
+          area: "Cultura",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 1,
+          programa: NaN,
+          ofrece:
+            "Actividades físicas, culturales e integración en la comunidad",
+          requisitos: "Ninguno",
+          poblacion: "General",
+          contacto: "Alejandra González",
+          direccion: "No especificado",
+          telefono: "300 7426086",
+        },
+        {
+          nombre: "Corporación Yenyly",
+          area: "Asistencia Humanitaria",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: 1,
+          programa: NaN,
+          ofrece:
+            "Actividades que buscan mejorar el acceso a derechos y servicios",
+          requisitos: "Ninguno",
+          poblacion: "General",
+          contacto: "Karen Pérez",
+          direccion: "No especificado",
+          telefono: 3106446330,
+        },
+        {
+          nombre: "Regulación Migración",
+          area: "Identificación, Registro Y Servicios Migratorios",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 16,
+          programa: NaN,
+          ofrece: "Asesoría y regulación",
+          requisitos: NaN,
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Juan Carlos",
+          direccion: "No especificado",
+          telefono: 3204910362,
+        },
+        {
+          nombre: "Migración Red Vida",
+          area: "Identificación, Registro Y Servicios Migratorios",
+          incidencia: "Nacional",
+          sector: "Cooperación Internacional",
+          comuna: 16,
+          programa: NaN,
+          ofrece:
+            "Afiliación en salud, capacitaciones, atención prenatal, jornadas de salud, accceso a derechos, derivaciones.",
+          requisitos: NaN,
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Denis Sanchez ",
+          direccion: "No especificado",
+          telefono: 3246838282,
+        },
+        {
+          nombre: "Medellín te quiere saludable",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece: "Medellín Te Quiere saludable",
+          requisitos: NaN,
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "JULIAN ESCOBAR",
+          direccion: "No especificado",
+          telefono: 3215092381,
+        },
+        {
+          nombre: "Unidad Administrativa Especial Buen Comienzo",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 8,
+          programa: NaN,
+          ofrece: NaN,
+          requisitos: "Tener hasta 5 años",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: NaN,
+          direccion: "No especificado",
+          telefono: "SIN DATO",
+        },
+        {
+          nombre: "PROGRAMA ARROBA MEDELLIN",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa:
+            "@Medellín, la Ciudadela Universitaria Digital de Sapiencia es un ecosistema integrado de aprendizaje virtual, es decir, maneja un proceso de transformación a través de alianzas tipo academia-empresa-estado, estrategia para promover la innovación y expandir su oferta académica en temas como Cuarta Revolución Industrial (4RI), Identidad digital, habilidades transversales, acceso e inclusión.",
+          ofrece: "EDUCACION SUPERIOR ",
+          requisitos: NaN,
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "VIRTUAL",
+          direccion: "Transversal 73 # 296. Sector El Volador",
+          telefono: "(604) 4447947 ",
+        },
+        {
+          nombre: "ADRA COLOMBIA",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece:
+            "Proyecto sasven “salud y seguridad alimentaria para venezolanos en Colombia”",
+          requisitos: "SIN DATO",
+          poblacion: "General",
+          contacto: "ALEJANDRO ",
+          direccion: "Calle 1 A No. 66-30 Belén",
+          telefono: 3148674558,
+        },
+        {
+          nombre: "Centros Integrales de Familia",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece:
+            "Acercan oportunidades en: acompañamiento psicosocial,  documentos de identidad y libreta militar,  ingresos y oportunidades laborales,  educación y capacitación, salud,  vivienda y servicios públicos,  acceso a la justicia y participación ciudadana,  dinámica familiar,  bancarización y ahorro",
+          requisitos: NaN,
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "SIN DATO",
+          direccion: "Cra. 48 #63 33, La Candelaria",
+          telefono: "313 4663221",
+        },
+        {
+          nombre: "JAC San Antonio de prado",
+          area: "Cultura",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 80,
+          programa: "Junta Administradora Local San Antonio de Prado",
+          ofrece: "Promover la participación ciudadana",
+          requisitos: "Pertenecer al Corregimiento",
+          poblacion: "General",
+          contacto: "Lina Marcel Restrepo",
+          direccion: "Carrera 79 calle 40 Sur 40, Medellín",
+          telefono: "(604) 286 5173)",
+        },
+        {
+          nombre: "JAC San Antonio de prado",
+          area: "Participación Ciudadana",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 80,
+          programa: "Junta Administradora Local San Antonio de Prado",
+          ofrece: "Promover la participación ciudadana",
+          requisitos: "Pertenecer al Corregimiento",
+          poblacion: "General",
+          contacto: "Luisa Maria Sepúlveda",
+          direccion: "Carrera 79 calle 40 Sur 40, Medellín",
+          telefono: "(604) 286 5173)",
+        },
+        {
+          nombre: "Unidad Familia Medellín",
+          area: "Asesoría Psicosocial",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 80,
+          programa: "Centro Integral de Familia",
+          ofrece: "Atención psicosocial,Articulación,Acercamiento de oferta.",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "Carolina Cardona",
+          direccion: "No especificado",
+          telefono: 3128505774,
+        },
+        {
+          nombre: "Secretaría de Juventud",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 16,
+          programa: "Proyecto franja junio a diciembre anual",
+          ofrece: "Parches, laboratorios creativos por nodos",
+          requisitos: NaN,
+          poblacion: "Juventud (18-28 años)",
+          contacto: "Melisa Hoyos Upegui",
+          direccion: "No especificado",
+          telefono: 3122503648,
+        },
+        {
+          nombre: "Opción Legal",
+          area: "Identificación, Registro Y Servicios Migratorios",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: 3,
+          programa: NaN,
+          ofrece: "Voluntariado C 4",
+          requisitos: "NNA Escolarizados ",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Jasmina Mendez ",
+          direccion: "No especificado",
+          telefono: 3005275816,
+        },
+        {
+          nombre: "World Vision",
+          area: "Asistencia Humanitaria",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: 3,
+          programa: NaN,
+          ofrece:
+            "Focalización de familias vulnerables para ayudas humanitarias ",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "Juan Manuel",
+          direccion: "No especificado",
+          telefono: 3045777850,
+        },
+        {
+          nombre: "Fundación Juanfe",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece:
+            "Apoyan a madres con un solo hijo para que tengan la posibilidad de estudiar una carrera técnica y de ingresar al mundo laboral, apoyando el ingreso de su hijo a un jardín infantil de Buen comienzo en el mismo horario en que están estudiando o trabajando.",
+          requisitos:
+            "Madres con un solo parto, y edades entre 16 y 20 años, con documento regular y bachillerato reconocido en Colombia o con nivel de formación básica ya concluida",
+          poblacion: "Mujeres",
+          contacto: NaN,
+          direccion: "Cra. 42 #48 - 35, La Candelaria, Medellín",
+          telefono: 3003675023,
+        },
+        {
+          nombre: "Caribe Afirmativo",
+          area: "Violencia De Género (Vbg)",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece:
+            "proyectos para la inclusión y acceso a derechos de poblacion LGBTQ+, brindado atención jurídica frente a VBG, barreras en acceso a derechos o discriminación; y consolidando redes y grupos de apoyo para poblacion diversa.",
+          requisitos: "poblacion LGBTQ+",
+          poblacion: "poblacion LGBTQ+",
+          contacto: NaN,
+          direccion: "No especificado",
+          telefono: 3017389014,
+        },
+        {
+          nombre: "Secretaría de las mujeres distrito de Medellín",
+          area: "Violencia De Género (Vbg)",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece: NaN,
+          requisitos:
+            "Talleres sobre educación sexual y reproductiva.\nIVE\nKits de salud sexual.",
+          poblacion: "Mujeres",
+          contacto: "poblacion en general",
+          direccion: "No especificado",
+          telefono: 3137332729,
+        },
+        {
+          nombre: "Secretaría de las mujeres de Medellín y Colectivo Abrelazos",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 16,
+          programa: NaN,
+          ofrece: NaN,
+          requisitos:
+            "Documento de identidad. Las capacitaciones abordan no regulares ",
+          poblacion: "Mujeres",
+          contacto: "Flor Maria Vargas",
+          direccion: "No especificado",
+          telefono: 3128923577,
+        },
+        {
+          nombre: "Alcaldía de Medellín",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 16,
+          programa: NaN,
+          ofrece:
+            "Regular y no regular. No regular: capacitaciones, salud mental, anticoncpeción.",
+          requisitos: "Todos",
+          poblacion: "General",
+          contacto: "Yulitza Gonzalez - Martha Marín",
+          direccion: "No especificado",
+          telefono: "3003535453 - 3128726160",
+        },
+        {
+          nombre: "Organización base comunitaria",
+          area: "Violencia De Género (Vbg)",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: 16,
+          programa: "Colectivo Mujeres de Belén",
+          ofrece:
+            "Desarrollan sus acciones dependiendo del proyecto que estén ejecutando.",
+          requisitos: "Capacitación, sensibilización.",
+          poblacion: "Mujeres",
+          contacto: "Luz Miriam (no se cuenta con el apellido)",
+          direccion: "No especificado",
+          telefono: NaN,
+        },
+        {
+          nombre: "Junta administradora local",
+          area: "Gobierno Local",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 16,
+          programa: NaN,
+          ofrece: "Posibilidad de acceder a espaciosen parque de Belén",
+          requisitos: "Ninguno.",
+          poblacion: "General",
+          contacto: "Daniel",
+          direccion: "No especificado",
+          telefono: NaN,
+        },
+        {
+          nombre: "IE Horacio Muñoz",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 16,
+          programa: NaN,
+          ofrece: "Educación basica y proceso de aceleración",
+          requisitos: "Ninguno.",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: NaN,
+          direccion: "No especificado",
+          telefono: NaN,
+        },
+        {
+          nombre: "Colegio Alcaldia de Medellín",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 16,
+          programa: NaN,
+          ofrece: "Educación basica y proceso de aceleración",
+          requisitos: "Ninguno.",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Alexander",
+          direccion: "No especificado",
+          telefono: 3108714875,
+        },
+        {
+          nombre: "Colegio capilla del Rosario",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 16,
+          programa: NaN,
+          ofrece: "Educación básica y proceso de aceleración",
+          requisitos: "Ninguno.",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Profesora Nancy",
+          direccion: "Cl. 6 Sur #79195, El Rincon, Medellín",
+          telefono: "313 7475918",
+        },
+        {
+          nombre: "La otra cara de Zafra",
+          area: "Cultura",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: 16,
+          programa: NaN,
+          ofrece: "La otra cara de Zafra",
+          requisitos:
+            "Realiza acciones de integración y apoya procesos con la secretaría de no violencia en el barrio.",
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Jonathan",
+          direccion: "No especificado",
+          telefono: "300 5950809",
+        },
+        {
+          nombre: "Infopalante",
+          area: "Comunicación",
+          incidencia: "Nacional",
+          sector: "Cooperación Internacional",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece: "Infopalante",
+          requisitos:
+            "A traves de el canal de WhatsApp se difunde información de interes para",
+          poblacion: "General",
+          contacto: "canal de Whatsapp",
+          direccion: "No especificado",
+          telefono: "https://whatsapp.com/channel/0029Va3vtVSCHDyc5QKlTQ0C",
+        },
+        {
+          nombre: "Colectiva Justicia Mujer",
+          area: "Acceso A Justicia Y Asesoría Jurídica",
+          incidencia: "Distrital",
+          sector: "Ong",
+          comuna: "Todas",
+          programa: NaN,
+          ofrece: "Derechos Sin Fronteras",
+          requisitos: "Atención psicojurídica",
+          poblacion: "General",
+          contacto: "Manuela Arango",
+          direccion: "No especificado",
+          telefono: "(604) 4798898 /314 8550009",
+        },
+        {
+          nombre: "Casa de justicia de Robledo",
+          area: "Acceso A Justicia Y Asesoría Jurídica",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 7,
+          programa: NaN,
+          ofrece: "Comisaría de familia ",
+          requisitos: "Atención jurídica",
+          poblacion: "General",
+          contacto: NaN,
+          direccion: "No especificado",
+          telefono: NaN,
+        },
+        {
+          nombre: "Junta de Acción Comunal Olaya Herrera",
+          area: "Participación Ciudadana",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 7,
+          programa: "Integración social y comunitaria",
+          ofrece:
+            "Apoyo y acompañamiento a diferentes actividades sociales y comunitarias",
+          requisitos: "Residir en la Comuna",
+          poblacion: "General",
+          contacto: "Jorge ",
+          direccion: "No especificado",
+          telefono: 3117363601,
+        },
+        {
+          nombre: "Junta Administradora Local",
+          area: "Participación Ciudadana",
+          incidencia: "Distrital",
+          sector: "Base Social",
+          comuna: 7,
+          programa: "Integración social y comunitaria",
+          ofrece:
+            "Apoyo y acompañamiento a diferentes actividades sociales y comunitarias ",
+          requisitos: "Residir en la Comuna",
+          poblacion: "General",
+          contacto: "Maria Betty Herrera Peña",
+          direccion: "No especificado",
+          telefono: 3015160485,
+        },
+        {
+          nombre: "Núcleo educativo 922",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 7,
+          programa: "Núcleo educativo 922",
+          ofrece: "Acceso a cupos de ed pública",
+          requisitos: "Residir en la Comuna",
+          poblacion: "General",
+          contacto: "Carmen Lucía",
+          direccion: "No especificado",
+          telefono: 3008925363,
+        },
+        {
+          nombre: "Núcleo educativo ",
+          area: "Educación",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 7,
+          programa: "Núcleo educativo ",
+          ofrece: "Acceso a cupos de ed pública",
+          requisitos: "Residir en la Comuna",
+          poblacion: "General",
+          contacto: "María Eugenia",
+          direccion: "No especificado",
+          telefono: 3052947296,
+        },
+        {
+          nombre: "ICBF",
+          area: "Educación",
+          incidencia: "Nacional",
+          sector: "Público",
+          comuna: 7,
+          programa: "Hogares Comunitarios de Bienestar",
+          ofrece: "Cuidado de niñas/os de primera infancia",
+          requisitos: "Residir en la Comuna",
+          poblacion: "General",
+          contacto: "Sandra Pino",
+          direccion: "No especificado",
+          telefono: 3154850665,
+        },
+        {
+          nombre: "Medellín te quiere saludable",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 3,
+          programa: "Medellín te quiere saludable",
+          ofrece: "Servicios de salud",
+          requisitos: "Ninguno.",
+          poblacion: "General",
+          contacto: "Ana María Sanchez Quintero",
+          direccion: "No especificado",
+          telefono: 3004778734,
+        },
+        {
+          nombre: "Medellín te quiere saludable",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 4,
+          programa: "Medellín te quiere saludable",
+          ofrece: "Servicios de salud",
+          requisitos: "Ninguno.",
+          poblacion: "General",
+          contacto: "Maria Piedad Roldan",
+          direccion: "No especificado",
+          telefono: 3105983987,
+        },
+        {
+          nombre: "Medellín te quiere saludable",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 7,
+          programa: "Medellín te quiere saludable",
+          ofrece: "Servicios de salud",
+          requisitos: "Ninguno.",
+          poblacion: "General",
+          contacto: "Alexander Bacca Muñoz",
+          direccion: "No especificado",
+          telefono: 3193665263,
+        },
+        {
+          nombre: "Medellín te quiere saludable",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 8,
+          programa: "Medellín te quiere saludable",
+          ofrece: "Servicios de salud",
+          requisitos: "Ninguno.",
+          poblacion: "General",
+          contacto: "María del Pilar Sanchez Guillen",
+          direccion: "No especificado",
+          telefono: 3127727126,
+        },
+        {
+          nombre: "Medellín te quiere saludable",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 13,
+          programa: "Medellín te quiere saludable",
+          ofrece: "Servicios de salud",
+          requisitos: "Ninguno.",
+          poblacion: "General",
+          contacto: "Juan David Peláez Muñoz",
+          direccion: "No especificado",
+          telefono: 3006575582,
+        },
+        {
+          nombre: "Medellín te quiere saludable",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 16,
+          programa: "Medellín te quiere saludable",
+          ofrece: "Servicios de salud",
+          requisitos: "Ninguno.",
+          poblacion: "General",
+          contacto: "Martha Lilian Marin Restrepo",
+          direccion: "No especificado",
+          telefono: 3128726160,
+        },
+        {
+          nombre: "Medellín te quiere saludable",
+          area: "Salud",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: 80,
+          programa: "Medellín te quiere saludable",
+          ofrece: "Servicios de salud",
+          requisitos: "Ninguno.",
+          poblacion: "General",
+          contacto: "Cristian Atehortua Castaño",
+          direccion: "No especificado",
+          telefono: 3194658028,
+        },
+        {
+          nombre: "ACNUR",
+          area: "Medios De Vida",
+          incidencia: "Nacional",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Medios de vida",
+          ofrece: "Medios de vida",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "Yuliana Vargas Gasca",
+          direccion: "No especificado",
+          telefono: 3205882630,
+        },
+        {
+          nombre: "AID FOR AIDS",
+          area: "Salud",
+          incidencia: "Nacional",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Salud, atención VIH",
+          ofrece: "Salud, atención VIH",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "Ana Betancur",
+          direccion: "No especificado",
+          telefono: 3143032110,
+        },
+        {
+          nombre: "Fundación Unimédicos",
+          area: "Salud",
+          incidencia: "Nacional",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Interrupción Voluntaria del embarazo",
+          ofrece: "Salud sexual y reproductiva",
+          requisitos: NaN,
+          poblacion: "General",
+          contacto: "Heifer Rodríguez",
+          direccion: "No especificado",
+          telefono: 3185232736,
+        },
+        {
+          nombre: "OIM",
+          area: "Gestión Migración",
+          incidencia: "Distrital",
+          sector: "Público",
+          comuna: "Todas",
+          programa: "Luchar contra la xenofobia",
+          ofrece: "Educación, asistencia humanitaria",
+          requisitos: NaN,
+          poblacion:
+            "Personas refugiadas, migrantes, comunidad de acogida y poblacion retornada",
+          contacto: "Alba María Orozco Rosado",
+          direccion: "No especificado",
+          telefono: 3204868520,
+        },
+      ];
+      const removeAccents = (str) => {
+        return str.normalize("NFD").replace(/\p{Diacritic}/gu, "");
+      };
+
+      const safeString = (value) => {
+        let str = "";
+        if (typeof value === "string") str = value.toLowerCase();
+        else if (typeof value === "number")
+          str = value.toString().toLowerCase();
+
+        str = removeAccents(str);
+        return str;
+      };
+
+      const renderActors = (filteredActors) => {
+        const actorsList = document.getElementById("actors-list");
+        actorsList.innerHTML = "";
+        filteredActors.forEach((actor) => {
+          const card = document.createElement("div");
+          card.classList.add("actor-card");
+          card.innerHTML = `
+                    <div class="actor-header">${actor.nombre || ""}</div>
                     <div class="actor-details">
-                        <p><strong>Área:</strong> ${actor.area || ''}</p>
-                        <p><strong>Incidencia:</strong> ${actor.incidencia || ''}</p>
-                        <p><strong>Sector:</strong> ${actor.sector || ''}</p>
-                        <p><strong>Comuna:</strong> ${actor.comuna || ''}</p>
-                        <p><strong>Programa/Proyecto:</strong> ${actor.programa || ''}</p>
-                        <p><strong>Qué Ofrece:</strong> ${actor.ofrece || ''}</p>
-                        <p><strong>Requisitos:</strong> ${actor.requisitos || ''}</p>
-                        <p><strong>Población Objetivo:</strong> ${actor.poblacion || ''}</p>
-                        <p><strong>Contacto:</strong> ${actor.contacto || ''}</p>
-                        <p><strong>Dirección:</strong> ${actor.direccion || ''}</p>
-                        <p><strong>Teléfono:</strong> ${actor.telefono || ''}</p>
+                        <p><strong>Área:</strong> ${actor.area || ""}</p>
+                        <p><strong>Incidencia:</strong> ${
+                          actor.incidencia || ""
+                        }</p>
+                        <p><strong>Sector:</strong> ${actor.sector || ""}</p>
+                        <p><strong>Comuna:</strong> ${actor.comuna || ""}</p>
+                        <p><strong>Programa/Proyecto:</strong> ${
+                          actor.programa || ""
+                        }</p>
+                        <p><strong>Qué Ofrece:</strong> ${
+                          actor.ofrece || ""
+                        }</p>
+                        <p><strong>Requisitos:</strong> ${
+                          actor.requisitos || ""
+                        }</p>
+                        <p><strong>Población Objetivo:</strong> ${
+                          actor.poblacion || ""
+                        }</p>
+                        <p><strong>Contacto:</strong> ${
+                          actor.contacto || ""
+                        }</p>
+                        <p><strong>Dirección:</strong> ${
+                          actor.direccion || ""
+                        }</p>
+                        <p><strong>Teléfono:</strong> ${
+                          actor.telefono || ""
+                        }</p>
                     </div>
                 `;
-        actorsList.appendChild(card);
-      });
-    };
+          actorsList.appendChild(card);
+        });
+      };
 
-    const filterActors = () => {
-      const searchInput = document.getElementById('search').value.toLowerCase();
-      const searchQuery = removeAccents(searchInput);
+      const filterActors = () => {
+        const searchInput = document
+          .getElementById("search")
+          .value.toLowerCase();
+        const searchQuery = removeAccents(searchInput);
 
-      const areaFilter = document.getElementById('area-filter').value;
-      const incidenciaFilter = document.getElementById('incidencia-filter').value;
-      const sectorFilter = document.getElementById('sector-filter').value;
-      const comunaFilter = document.getElementById('comuna-filter').value;
+        const areaFilter = document.getElementById("area-filter").value;
+        const incidenciaFilter =
+          document.getElementById("incidencia-filter").value;
+        const sectorFilter = document.getElementById("sector-filter").value;
+        const comunaFilter = document.getElementById("comuna-filter").value;
 
-      const filteredActors = actors.filter(actor => {
-        const name = safeString(actor.nombre);
-        const programa = safeString(actor.programa);
-        const ofrece = safeString(actor.ofrece);
+        const filteredActors = actors.filter((actor) => {
+          const name = safeString(actor.nombre);
+          const programa = safeString(actor.programa);
+          const ofrece = safeString(actor.ofrece);
 
-        return (
-          (!areaFilter || actor.area === areaFilter) &&
-          (!incidenciaFilter || actor.incidencia === incidenciaFilter) &&
-          (!sectorFilter || actor.sector === sectorFilter) &&
-          (!comunaFilter || actor.comuna == comunaFilter) &&
-          (
-            name.includes(searchQuery) ||
-            programa.includes(searchQuery) ||
-            ofrece.includes(searchQuery)
-          )
-        );
-      });
+          return (
+            (!areaFilter || actor.area === areaFilter) &&
+            (!incidenciaFilter || actor.incidencia === incidenciaFilter) &&
+            (!sectorFilter || actor.sector === sectorFilter) &&
+            (!comunaFilter || actor.comuna == comunaFilter) &&
+            (name.includes(searchQuery) ||
+              programa.includes(searchQuery) ||
+              ofrece.includes(searchQuery))
+          );
+        });
 
-      renderActors(filteredActors);
-    };
+        renderActors(filteredActors);
+      };
 
-    document.getElementById('search').addEventListener('input', filterActors);
-    document.getElementById('area-filter').addEventListener('change', filterActors);
-    document.getElementById('incidencia-filter').addEventListener('change', filterActors);
-    document.getElementById('sector-filter').addEventListener('change', filterActors);
-    document.getElementById('comuna-filter').addEventListener('change', filterActors);
+      document.getElementById("search").addEventListener("input", filterActors);
+      document
+        .getElementById("area-filter")
+        .addEventListener("change", filterActors);
+      document
+        .getElementById("incidencia-filter")
+        .addEventListener("change", filterActors);
+      document
+        .getElementById("sector-filter")
+        .addEventListener("change", filterActors);
+      document
+        .getElementById("comuna-filter")
+        .addEventListener("change", filterActors);
 
-    renderActors(actors);
-  </script>
-  <footer>
-    &copy; 2024 Modelo de Graduación. Todos los derechos reservados.
-  </footer>
-</body>
-
+      renderActors(actors);
+    </script>
+    <footer>
+      &copy; 2024 Modelo de Graduación. Todos los derechos reservados.
+    </footer>
+  </body>
 </html>
